@@ -1,0 +1,29 @@
+/* Стили блока с информацией */
+.info{
+  margin-bottom: 40px;
+}
+
+/* ================================== */
+
+/* Стили списка уроков */
+.lessons__item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.lessons__item + .lessons__item{
+  margin-top: 20px;
+}
+
+.lessons__btn{
+  padding: 10px;
+  font-size: 1.6rem;
+  border: 1px dashed black;
+  cursor: pointer;
+}
+
+/* ================================== */

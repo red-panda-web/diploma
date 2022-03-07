@@ -1,0 +1,125 @@
+:root {
+  --container-size: 1230px;
+  --keyboard-size: calc(var(--container-size) - 30px);
+  --keyboard-item-width: calc(var(--keyboard-size) / 100 * 6);
+  --keyboard-item-height: var(--keyboard-item-width);
+}
+
+
+/* Стили для блока с информацией */
+.info__body {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 7px 0;
+  border: 1px solid gray;
+}
+
+.info__message {
+  flex-basis: 60%;
+  display: flex;
+  justify-content: center;
+}
+
+.info__timer {
+  flex-basis: 20%;
+}
+
+.info__language {
+  flex-basis: 20%;
+}
+
+/* ================================== */
+
+/* Стили для блока с вводимым текстом */
+#trainerLng{
+  display: inline-block;
+}
+
+.trainerText__body {
+  padding: 20px;
+  border: 1px solid gray;
+  text-align: justify;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 1.5;
+}
+
+.trainerText__body span{
+  margin: 0 7px;
+}
+
+.trainerText__item{
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: gray;
+}
+
+/* ================================== */
+
+/* Стили для клавиатуры */
+.keyboard__body{
+  border: 1px solid gray;
+  width: var(--keyboard-size);
+  padding: 30px;
+  font-size: 1.4rem;
+}
+
+.keyboard__row{
+  display: flex; 
+  justify-content: space-between;
+  align-content: center;
+}
+
+.keyboard__row + .keyboard__row{
+  margin-top: 10px;
+}
+
+.keyboard__group{
+  display: inline-flex;
+}
+
+.keyboard__group .keyboard__item + .keyboard__item{
+  margin-left: 5px;
+}
+
+.keyboard__item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--keyboard-item-width);
+  height: var(--keyboard-item-height);
+  transition: all 0.1s linear 0.3s;
+  border: 1px solid black;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 8px 5px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 0px 8px 5px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 0px 8px 5px rgba(34, 60, 80, 0.2);
+}
+
+.itemSize__oneAndHalf{
+  width: calc(var(--keyboard-item-width) * 1.5);
+}
+
+.itemSize__double{
+  width: calc(var(--keyboard-item-width) * 2);
+}
+
+.itemSize__doubleAndHalf{
+  width: calc(var(--keyboard-item-width) * 2.5);
+}
+
+.itemSize__triple{
+  width: calc(var(--keyboard-item-width) * 3);
+}
+
+.itemSize__space{
+  width: calc(var(--keyboard-item-width) * 6.5);
+}
+
+.keyHighlight{
+   background-color: black;
+   color: #fff;
+}
+
+/* ================================== */

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="style/style.css">
+   <link rel="stylesheet" href="style/trainer.css">
+   <title>Тренажер</title>
+</head>
+
+<body class="lock">
+   <div class="wrapper">
+      <header class="header">
+         <div class="container">
+            <div class="header__body">
+               <div class="header__logo">Logo</div>
+               <nav class="header__menu">
+                  <ul>
+                     <li><a href="index.html">Уроки</a></li>
+                     <li><a href="trainer.html">Тренажер</a></li>
+                     <li><a href="#!">Профиль</a></li>
+                  </ul>
+               </nav>
+            </div>
+         </div>
+      </header>
+
+      <main>
+         <section class="info">
+            <div class="container">
+               <div class="info__body">
+                  <div class="info__message">
+                     <div class="text">Отсчет времени начнется при начале печати</div>
+                  </div>
+                  <div class="info__timer">
+                     <div class="text">Время: <span id="trainerTimer">0:00:00:000</span></div>
+                  </div>
+                  <div class="info__language">
+                     <div class="text">Язык: <span id="trainerLng">
+                           <img src="img/icons/russia_flag.png" alt="Russian language" class="">
+                           <img src="img/icons/usa_flag.png" alt="English language" class="notDisplayed">
+                        </span></div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <section class="trainerText">
+            <div class="container">
+               <div class="trainerText__body">
+                  <span class='trainerText__item'>L</span><span class='trainerText__item'>o</span><span
+                     class='trainerText__item'>r</span><span class='trainerText__item'>e</span><span
+                     class='trainerText__item'>m</span><span> </span><span class='trainerText__item'>i</span><span
+                     class='trainerText__item'>p</span><span class='trainerText__item'>s</span><span
+                     class='trainerText__item'>u</span><span class='trainerText__item'>m</span><span> </span><span
+                     class='trainerText__item'>d</span><span class='trainerText__item'>o</span><span
+                     class='trainerText__item'>l</span><span class='trainerText__item'>o</span><span
+                     class='trainerText__item'>r</span><span> </span><span class='trainerText__item'>s</span><span
+                     class='trainerText__item'>i</span><span class='trainerText__item'>t</span><span> </span><span
+                     class='trainerText__item'>a</span><span class='trainerText__item'>m</span><span
+                     class='trainerText__item'>e</span><span class='trainerText__item'>t</span><span> </span><span
+                     class='trainerText__item'>c</span><span class='trainerText__item'>o</span><span
+                     class='trainerText__item'>n</span><span class='trainerText__item'>s</span><span
+                     class='trainerText__item'>e</span><span class='trainerText__item'>c</span><span
+                     class='trainerText__item'>t</span><span class='trainerText__item'>e</span><span
+                     class='trainerText__item'>t</span><span class='trainerText__item'>u</span><span
+                     class='trainerText__item'>r</span><span> </span><span class='trainerText__item'>a</span><span
+                     class='trainerText__item'>d</span><span class='trainerText__item'>i</span><span
+                     class='trainerText__item'>p</span><span class='trainerText__item'>i</span><span
+                     class='trainerText__item'>s</span><span class='trainerText__item'>i</span><span
+                     class='trainerText__item'>c</span><span class='trainerText__item'>i</span><span
+                     class='trainerText__item'>n</span><span class='trainerText__item'>g</span><span> </span><span
+                     class='trainerText__item'>e</span><span class='trainerText__item'>l</span><span
+                     class='trainerText__item'>i</span><span class='trainerText__item'>t</span><span
+                     class='trainerText__item'>.</span><span> </span><span class='trainerText__item'>Q</span><span
+                     class='trainerText__item'>u</span><span class='trainerText__item'>o</span><span> </span><span
+                     class='trainerText__item'>l</span><span class='trainerText__item'>a</span><span
+                     class='trainerText__item'>u</span><span class='trainerText__item'>d</span><span
+                     class='trainerText__item'>a</span><span class='trainerText__item'>n</span><span
+                     class='trainerText__item'>t</span><span class='trainerText__item'>i</span><span
+                     class='trainerText__item'>u</span><span class='trainerText__item'>m</span><span> </span><span
+                     class='trainerText__item'>e</span><span class='trainerText__item'>l</span><span
+                     class='trainerText__item'>i</span><span class='trainerText__item'>g</span><span
+                     class='trainerText__item'>e</span><span class='trainerText__item'>n</span><span
+                     class='trainerText__item'>d</span><span class='trainerText__item'>i</span><span> </span><span
+                     class='trainerText__item'>f</span><span class='trainerText__item'>a</span><span
+                     class='trainerText__item'>c</span><span class='trainerText__item'>i</span><span
+                     class='trainerText__item'>l</span><span class='trainerText__item'>i</span><span
+                     class='trainerText__item'>s</span><span> </span><span class='trainerText__item'>t</span><span
+                     class='trainerText__item'>e</span><span class='trainerText__item'>m</span><span
+                     class='trainerText__item'>p</span><span class='trainerText__item'>o</span><span
+                     class='trainerText__item'>r</span><span class='trainerText__item'>a</span><span> </span><span
+                     class='trainerText__item'>v</span><span class='trainerText__item'>o</span><span
+                     class='trainerText__item'>l</span><span class='trainerText__item'>u</span><span
+                     class='trainerText__item'>p</span><span class='trainerText__item'>t</span><span
+                     class='trainerText__item'>a</span><span class='trainerText__item'>s</span><span> </span><span
+                     class='trainerText__item'>o</span><span class='trainerText__item'>p</span><span
+                     class='trainerText__item'>t</span><span class='trainerText__item'>i</span><span
+                     class='trainerText__item'>o</span><span> </span><span class='trainerText__item'>i</span><span
+                     class='trainerText__item'>d</span><span> </span><span class='trainerText__item'>a</span><span
+                     class='trainerText__item'>u</span><span class='trainerText__item'>t</span><span> </span><span
+                     class='trainerText__item'>a</span><span class='trainerText__item'>n</span><span
+                     class='trainerText__item'>i</span><span class='trainerText__item'>m</span><span
+                     class='trainerText__item'>i</span><span> </span><span class='trainerText__item'>r</span><span
+                     class='trainerText__item'>e</span><span class='trainerText__item'>m</span><span> </span><span
+                     class='trainerText__item'>l</span><span class='trainerText__item'>i</span><span
+                     class='trainerText__item'>b</span><span class='trainerText__item'>e</span><span
+                     class='trainerText__item'>r</span><span class='trainerText__item'>o</span>
+               </div>
+            </div>
+         </section>
+
+         <section class="keyboard">
+            <div class="container">
+               <div class="keyboard__body">
+                  <div class="keyboard__row">
+                     <div class="keyboard__item">`</div>
+                     <div class="keyboard__item">1</div>
+                     <div class="keyboard__item">2</div>
+                     <div class="keyboard__item">3</div>
+                     <div class="keyboard__item">4</div>
+                     <div class="keyboard__item">5</div>
+                     <div class="keyboard__item">6</div>
+                     <div class="keyboard__item">7</div>
+                     <div class="keyboard__item">8</div>
+                     <div class="keyboard__item">9</div>
+                     <div class="keyboard__item">0</div>
+                     <div class="keyboard__item">-</div>
+                     <div class="keyboard__item">=</div>
+                     <div class="keyboard__item itemSize__double">Backspace</div>
+                  </div>
+                  <div class="keyboard__row">
+                     <div class="keyboard__item itemSize__oneAndHalf">Tab</div>
+                     <div class="keyboard__item" data-key="KeyQ">Q</div>
+                     <div class="keyboard__item" data-key="KeyW">W</div>
+                     <div class="keyboard__item" data-key="KeyE">E</div>
+                     <div class="keyboard__item" data-key="KeyR">R</div>
+                     <div class="keyboard__item" data-key="KeyT">T</div>
+                     <div class="keyboard__item" data-key="KeyY">Y</div>
+                     <div class="keyboard__item" data-key="KeyU">U</div>
+                     <div class="keyboard__item" data-key="KeyI">I</div>
+                     <div class="keyboard__item" data-key="KeyO">O</div>
+                     <div class="keyboard__item" data-key="KeyP">P</div>
+                     <div class="keyboard__item" data-key="BracketLeft">[</div>
+                     <div class="keyboard__item" data-key="BracketRight">]</div>
+                     <div class="keyboard__item itemSize__oneAndHalf">\</div>
+                  </div>
+                  <div class="keyboard__row">
+                     <div class="keyboard__item itemSize__double" data-key="CapsLock">CapsLock</div>
+                     <div class="keyboard__item" data-key="KeyA">A</div>
+                     <div class="keyboard__item" data-key="KeyS">S</div>
+                     <div class="keyboard__item" data-key="KeyD">D</div>
+                     <div class="keyboard__item" data-key="KeyF">F</div>
+                     <div class="keyboard__item" data-key="KeyG">G</div>
+                     <div class="keyboard__item" data-key="KeyH">H</div>
+                     <div class="keyboard__item" data-key="KeyJ">J</div>
+                     <div class="keyboard__item" data-key="KeyK">K</div>
+                     <div class="keyboard__item" data-key="KeyL">L</div>
+                     <div class="keyboard__item" data-key="Semicolon">;</div>
+                     <div class="keyboard__item" data-key="Quote">'</div>
+                     <div class="keyboard__item itemSize__double">Enter</div>
+                  </div>
+                  <div class="keyboard__row">
+                     <div class="keyboard__item itemSize__doubleAndHalf">Shift</div>
+                     <div class="keyboard__item" data-key="KeyZ">Z</div>
+                     <div class="keyboard__item" data-key="KeyX">X</div>
+                     <div class="keyboard__item" data-key="KeyC">C</div>
+                     <div class="keyboard__item" data-key="KeyV">V</div>
+                     <div class="keyboard__item" data-key="KeyB">B</div>
+                     <div class="keyboard__item" data-key="KeyN">N</div>
+                     <div class="keyboard__item" data-key="KeyM">M</div>
+                     <div class="keyboard__item" data-key="Comma">,</div>
+                     <div class="keyboard__item" data-key="Period">.</div>
+                     <div class="keyboard__item" data-key="Slash">/</div>
+                     <div class="keyboard__item itemSize__triple">Shift</div>
+                  </div>
+                  <div class="keyboard__row">
+                     <div class="keyboard__item itemSize__oneAndHalf">Ctrl</div>
+                     <div class="keyboard__item">Win</div>
+                     <div class="keyboard__item itemSize__oneAndHalf">Alt</div>
+                     <div class="keyboard__item itemSize__space" data-key="Space"></div>
+                     <div class="keyboard__item itemSize__oneAndHalf">Alt</div>
+                     <div class="keyboard__item">Win</div>
+                     <div class="keyboard__item">CM</div>
+                     <div class="keyboard__item itemSize__oneAndHalf">Ctrl</div>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </main>
+
+      <footer class="footer">
+         <div class="conteiner">
+            <div class="footer__body">
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, illo.
+            </div>
+         </div>
+      </footer>
+   </div>
+
+   <div class="modal">
+      <div class="modal__window">
+         <a href="index.html" class="modal__closeBtn">
+            <i class="fa-solid fa-xmark fa-3x"></i>
+         </a>
+         <div class="modal__backBtn hidden">
+            <i class="fa-solid fa-arrow-left-long fa-3x"></i>
+         </div>
+         <div class="modal__body">
+
+            <div class="modal__content" data-order="1">
+               <h2>Выбор текста</h2>
+               <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis pariatur animi
+                  dolor.
+                  Repellendus reprehenderit expedita eum magnam iste, architecto adipisci nisi nostrum tempore quisquam
+                  ab
+                  in magni eligendi ipsum numquam aut dolorem pariatur suscipit laudantium? Soluta similique tempora
+                  harum!
+                  Porro laborum recusandae in, provident perferendis suscipit unde nemo tenetur! Natus?
+               </div>
+               <div class="modal__choose">
+                  <div class="modal__chooseBtn" data-choose="Gen">
+                     <div class="text">Сгенерировать</div>
+                  </div>
+                  <div class="modal__chooseBtn" data-choose="Own">
+                     <div class="text">Свой</div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="modal__content notDisplayed" data-order="2">
+               <h2>Выбор языка</h2>
+               <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis pariatur animi
+                  dolor.
+                  Repellendus reprehenderit expedita eum magnam iste, architecto adipisci nisi nostrum tempore quisquam
+                  ab
+                  in magni eligendi ipsum numquam aut dolorem pariatur suscipit laudantium? Soluta similique tempora
+                  harum!
+                  Porro laborum recusandae in, provident perferendis suscipit unde nemo tenetur! Natus?
+               </div>
+               <div class="modal__choose">
+                  <div class="modal__chooseBtn" data-choose="Rus">
+                     <div class="text">Русский</div>
+                  </div>
+                  <div class="modal__chooseBtn" data-choose="Eng">
+                     <div class="text">Английский</div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="modal__content notDisplayed" data-order="3">
+               <h2>Размер текста</h2>
+               <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis pariatur animi
+                  dolor.
+                  Repellendus reprehenderit expedita eum magnam iste, architecto adipisci nisi nostrum tempore quisquam
+                  ab
+                  in magni eligendi ipsum numquam aut dolorem pariatur suscipit laudantium? Soluta similique tempora
+                  harum!
+                  Porro laborum recusandae in, provident perferendis suscipit unde nemo tenetur! Natus?
+               </div>
+               <div class="modal__choose">
+                  <div class="modal__chooseBtn" data-choose="Small">
+                     <div class="text">Небольшой</div>
+                  </div>
+                  <div class="modal__chooseBtn" data-choose="Medium">
+                     <div class="text">Средний</div>
+                  </div>
+                  <div class="modal__chooseBtn" data-choose="Big">
+                     <div class="text">Большой</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <script src="script/script.js"></script>
+   <script src="https://kit.fontawesome.com/0911116816.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

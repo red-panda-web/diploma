@@ -1,0 +1,32 @@
+.header{
+  background-color: #000;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.header__body{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.header__logo{
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.header__menu ul{
+  display: flex;
+}
+
+.header__menu ul li{
+  list-style-type: none;
+  margin-left: 20px;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.header__menu ul li:hover{
+  border-bottom-color: #fff;
+}
