@@ -5,7 +5,6 @@
   --keyboard-item-height: var(--keyboard-item-width);
 }
 
-
 /* Стили для блока с информацией */
 .info__body {
   width: 100%;
@@ -32,11 +31,14 @@
 /* ================================== */
 
 /* Стили для блока с вводимым текстом */
-#trainerLng{
+#trainer-lng {
   display: inline-block;
 }
 
 .trainerText__body {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: 20px;
   border: 1px solid gray;
   text-align: justify;
@@ -45,11 +47,11 @@
   line-height: 1.5;
 }
 
-.trainerText__body span{
+.trainerText__body span {
   margin: 0 7px;
 }
 
-.trainerText__item{
+.trainerText__item {
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: gray;
@@ -58,32 +60,32 @@
 /* ================================== */
 
 /* Стили для клавиатуры */
-.keyboard__body{
+.keyboard__body {
   border: 1px solid gray;
   width: var(--keyboard-size);
   padding: 30px;
   font-size: 1.4rem;
 }
 
-.keyboard__row{
-  display: flex; 
+.keyboard__row {
+  display: flex;
   justify-content: space-between;
   align-content: center;
 }
 
-.keyboard__row + .keyboard__row{
+.keyboard__row + .keyboard__row {
   margin-top: 10px;
 }
 
-.keyboard__group{
+.keyboard__group {
   display: inline-flex;
 }
 
-.keyboard__group .keyboard__item + .keyboard__item{
+.keyboard__group .keyboard__item + .keyboard__item {
   margin-left: 5px;
 }
 
-.keyboard__item{
+.keyboard__item {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,29 +99,29 @@
   box-shadow: 0px 0px 8px 5px rgba(34, 60, 80, 0.2);
 }
 
-.itemSize__oneAndHalf{
+.itemSize__oneAndHalf {
   width: calc(var(--keyboard-item-width) * 1.5);
 }
 
-.itemSize__double{
+.itemSize__double {
   width: calc(var(--keyboard-item-width) * 2);
 }
 
-.itemSize__doubleAndHalf{
+.itemSize__doubleAndHalf {
   width: calc(var(--keyboard-item-width) * 2.5);
 }
 
-.itemSize__triple{
+.itemSize__triple {
   width: calc(var(--keyboard-item-width) * 3);
 }
 
-.itemSize__space{
+.itemSize__space {
   width: calc(var(--keyboard-item-width) * 6.5);
 }
 
-.keyHighlight{
-   background-color: black;
-   color: #fff;
+.keyHighlight {
+  background-color: black;
+  color: #fff;
 }
 
 /* ================================== */
