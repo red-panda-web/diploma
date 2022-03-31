@@ -47,14 +47,31 @@
   line-height: 1.5;
 }
 
-.trainerText__body span {
-  margin: 0 7px;
-}
-
 .trainerText__item {
+  margin: 0 7px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   border-bottom-color: gray;
+}
+
+.trainerText__item_current,
+.trainerText__item_correct,
+.trainerText__item_wrong{
+  border-bottom: none;
+  margin: 0;
+  padding: 0 7px;
+}
+
+.trainerText__item_current{
+  background-color: gainsboro;
+}
+
+.trainerText__item_correct{
+  background-color: rgba(8, 185, 8, 0.7);
+}
+
+.trainerText__item_wrong {
+  background-color: rgba(255, 0, 0, 0.7);
 }
 
 /* ================================== */

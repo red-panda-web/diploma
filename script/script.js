@@ -74,25 +74,27 @@ const keysValues = {   // Значения клавиш
 };
 
 function showNextModal(e) {   // Показ следующего модального окна
-   let target = e.target.closest(".modal__choose-btn").dataset.choose;   // Получаем значение data атрибута нажатой в модальном окне кнопки 
-   if (target === "Gen") { // Если была нажата кнопка генерации текста
+   if (e.target.closest(".modal__choose-btn") != null) { // Проверяем, что нажатие произошло на кнопку выбора в модальном окне
+      let target = e.target.closest(".modal__choose-btn").dataset.choose;   // Получаем значение data атрибута нажатой в модальном окне кнопки 
+      if (target === "Gen") { // Если была нажата кнопка генерации текста
       document.querySelector(".modal__content[data-order='1']").classList.add("not-displayed");  // Скрываем текущее содержимое модального окна и показываем следующее
       document.querySelector(".modal__content[data-order='2']").classList.remove("not-displayed");
       document.querySelector(".modal__back-btn").classList.remove("hidden"); // Показываем кнопку возврата
-   }
-   if (target === "Rus" || target === "Eng") {  // Если была нажата кнопка выбора языка
-      changeKeyboardLanguage(target);  // Меняем раскладку клавиатуры на соответствующий язык
-      document.querySelector(".keyboard").dataset.language = target; // Запоминаем выбранный язык
-      document.querySelector(".modal__content[data-order='2']").classList.add("not-displayed");  // Скрываем текущее содержимое модального окна и показываем следующее
-      document.querySelector(".modal__content[data-order='3']").classList.remove("not-displayed");
-   }
-   if (target === "Small" || target === "Medium" || target === "Big") { // Если была нажата кнопка выбора размера текста
-      let textLanguage = document.querySelector(".keyboard").dataset.language; // Узнаем выбранный язык
-      document.querySelector(".modal__content[data-order='3']").classList.add("not-displayed"); // Скрываем текущее содержимое модального окна и показываем самое первое содержимое (на случай повторного вызова модального окна, чтобы выбор начинался с начала)
-      document.querySelector(".modal__content[data-order='1']").classList.remove("not-displayed");
-      document.querySelector(".modal").classList.add("hidden");   // Скрываем полностью модальное окно
-      document.querySelector("body").classList.remove("lock"); // Разблокируем скрол страницы
-      createText(textLanguage, target);   // Генерируем текст
+      }
+      if (target === "Rus" || target === "Eng") {  // Если была нажата кнопка выбора языка
+         changeKeyboardLanguage(target);  // Меняем раскладку клавиатуры на соответствующий язык
+         document.querySelector(".keyboard").dataset.language = target; // Запоминаем выбранный язык
+         document.querySelector(".modal__content[data-order='2']").classList.add("not-displayed");  // Скрываем текущее содержимое модального окна и показываем следующее
+         document.querySelector(".modal__content[data-order='3']").classList.remove("not-displayed");
+      }
+      if (target === "Small" || target === "Medium" || target === "Big") { // Если была нажата кнопка выбора размера текста
+         let textLanguage = document.querySelector(".keyboard").dataset.language; // Узнаем выбранный язык
+         document.querySelector(".modal__content[data-order='3']").classList.add("not-displayed"); // Скрываем текущее содержимое модального окна и показываем самое первое содержимое (на случай повторного вызова модального окна, чтобы выбор начинался с начала)
+         document.querySelector(".modal__content[data-order='1']").classList.remove("not-displayed");
+         document.querySelector(".modal").classList.add("hidden");   // Скрываем полностью модальное окно
+         document.querySelector("body").classList.remove("lock"); // Разблокируем скрол страницы
+         createText(textLanguage, target);   // Генерируем текст
+      }
    }
 }
 
@@ -131,14 +133,43 @@ function createText(language, size) {  // Генерация текста с HTM
       .then(json => {   // В случае успеха обрабатываем ответ
          let text = json.text || json[0];   // Получаем текст
          let textBody = document.querySelector(".trainerText__body");   // Находим элемент куда будем его вставлять
-         text.split("").forEach(item => { // Для каждого символа текста
-            let span = document.createElement("span");   // Создаем элемент
-            if(specialSymbols.indexOf(item) === -1) span.classList.add("trainerText__item"); // Если символ не относится к специальным, то выделяем его
-            span.textContent = item;   // Вставляем содержимое
-            textBody.append(span);  // Вставляем элемент на страницу
+         text.split("").forEach((item, index) => { // Для каждого символа текста 
+            if (specialSymbols.indexOf(item) === -1) {   // Если символ не относится к специальным
+               let span = document.createElement("span");   // То создаем для него элемент
+               span.classList.add("trainerText__item");  // Добавляем класс
+               if (index === 0) span.classList.add("trainerText__item_current"); // Первый символ в тексте отмечаем как текущий
+               span.textContent = item;   // Вставляем содержимое в созданный элемент
+               textBody.append(span);  // Вставляем элемент на страницу
+            }
+            else textBody.append(item);   // Если символ относиться к специальным, то просто вставляем его без эдемента
          });
       })
       .catch(error => alert(error)); // В случае ошибки – выводим её
+}
+
+function checkSymbol(e) {  // Проверка нажатой клавиши
+   let language = document.querySelector(".keyboard").dataset.language; // Выбранный язык текста
+   if (Object.keys(keysValues[language]).indexOf(e.code) != -1) { // Проверяем что нажата проверяемая клавиша (буквенная или пробел)
+      if (e.code === "Space") e.preventDefault();  // Если был нажат пробел, то отключаем стандартную прокрутку страницы при его нажатии
+      let currentSymbol = document.querySelector(".trainerText__item_current");  // Текущий символ из текста, клавишу с которым следует нажать пользователю
+      let nextSymbol = document.querySelector(".trainerText__item_current").nextElementSibling; // Следующай символ после текущего
+   
+      let pressedSymbol = keysValues[language][e.code];  // Символ, который соответствует нажатой пользователем клавиши
+
+      if (currentSymbol.textContent === pressedSymbol || currentSymbol.textContent === pressedSymbol.toLowerCase()) {   // Если пользователь нажал правильную клавишу
+         currentSymbol.classList.remove("trainerText__item_current");   // Убираем у текущего символа соответствующий класс
+         currentSymbol.classList.add("trainerText__item_correct");   // И отмечаем его как верно нажатый
+      }
+      else {   // Если пользователь нажал неверную клавишу
+         currentSymbol.classList.remove("trainerText__item_current");    // Убираем у текущего символа соответствующий класс
+         currentSymbol.classList.add("trainerText__item_wrong");  /// И отмечаем его как неверно нажатый
+      }
+
+      if (nextSymbol != null) {  // Если это был не последний символ текста
+         nextSymbol.classList.add("trainerText__item_current");   // То обозначаем следующий символ текста как текущий
+      }
+      else alert("Конец текста, вывод статистики");   // Иначе выводим статистику
+   }
 }
 
 function changeKeyboardLanguage(language) { // Изменение раскладки клавиатуры
@@ -152,7 +183,7 @@ function changeKeyboardLanguage(language) { // Изменение расклад
    }
 
    let keys = document.querySelectorAll(".keyboard__item[data-key]");   // Получаем все объкты клавиш
-   
+
    keys.forEach(item => {  // Для каждой клавиши
       let keyCode = item.dataset.key;  // Узнаем её ключ из data-атрибута 
       item.textContent = keysValues[language][keyCode]; // Вставляем в объект клавиши подходящую букву в соответствии с выбранным языком и ключом
@@ -216,22 +247,7 @@ function stopTimer(timerObj) {   // Остановка таймера
    timerObj.stop();
 }
 
-/*function writeText(e) {
-   let keyCode = e.code;
-   let selectedLanguage = document.querySelector(".keyboard").dataset.language;
-   let symbol = keysValues[selectedLanguage][keyCode];
-   let textArea = document.querySelector("#enteredText");
-
-   if (symbol !== undefined) {
-      if (keysValues.CapsIsActive) textArea.value += symbol;
-      else textArea.value += symbol.toLowerCase();
-   }
-}*/
-
-//let selectLanguageBtn = document.querySelector("#selectLanguageBtn");
-
-//selectLanguageBtn.addEventListener("click", changeKeyboardLanguage);
-
+document.addEventListener("keydown", checkSymbol);
 document.addEventListener("keydown", keyHighlight);
 document.addEventListener("keydown", startTimer, { once: true });
 
