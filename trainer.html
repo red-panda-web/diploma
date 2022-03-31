@@ -8,6 +8,8 @@
    <link rel="stylesheet" href="style/style.css">
    <link rel="stylesheet" href="style/trainer.css">
    <title>Тренажер</title>
+   <script defer src="https://kit.fontawesome.com/0911116816.js" crossorigin="anonymous"></script>
+   <script defer src="script/script.js"></script>
 </head>
 
 <body class="lock">
@@ -40,9 +42,9 @@
                      </div>
                   </div>
                   <div class="info__language">
-                     <div class="text">Язык: <span id="trainer-lng">
-                           <img src="img/icons/russia_flag.png" alt="Russian language" class="">
-                           <img src="img/icons/usa_flag.png" alt="English language" class="not-displayed">
+                     <div class="text">Язык: <span class="trainer-lng">
+                           <img src="img/icons/russia_flag.png" alt="Russian language" class="trainer-lng_rus">
+                           <img src="img/icons/usa_flag.png" alt="English language" class="trainer-lng_eng not-displayed">
                         </span></div>
                   </div>
                </div>
@@ -60,23 +62,7 @@
             <div class="container">
                <div class="keyboard__body">
                   <div class="keyboard__row">
-                     <div class="keyboard__item">`</div>
-                     <div class="keyboard__item">1</div>
-                     <div class="keyboard__item">2</div>
-                     <div class="keyboard__item">3</div>
-                     <div class="keyboard__item">4</div>
-                     <div class="keyboard__item">5</div>
-                     <div class="keyboard__item">6</div>
-                     <div class="keyboard__item">7</div>
-                     <div class="keyboard__item">8</div>
-                     <div class="keyboard__item">9</div>
-                     <div class="keyboard__item">0</div>
-                     <div class="keyboard__item">-</div>
-                     <div class="keyboard__item">=</div>
-                     <div class="keyboard__item itemSize__double">Backspace</div>
-                  </div>
-                  <div class="keyboard__row">
-                     <div class="keyboard__item itemSize__oneAndHalf">Tab</div>
+                     <div class="keyboard__item itemSize__oneAndHalf keyboard__item_disabled"></div>
                      <div class="keyboard__item" data-key="KeyQ">Q</div>
                      <div class="keyboard__item" data-key="KeyW">W</div>
                      <div class="keyboard__item" data-key="KeyE">E</div>
@@ -89,10 +75,10 @@
                      <div class="keyboard__item" data-key="KeyP">P</div>
                      <div class="keyboard__item" data-key="BracketLeft">[</div>
                      <div class="keyboard__item" data-key="BracketRight">]</div>
-                     <div class="keyboard__item itemSize__oneAndHalf">\</div>
+                     <div class="keyboard__item itemSize__oneAndHalf keyboard__item_disabled"></div>
                   </div>
                   <div class="keyboard__row">
-                     <div class="keyboard__item itemSize__double" data-key="CapsLock">CapsLock</div>
+                     <div class="keyboard__item itemSize__double keyboard__item_disabled"></div>
                      <div class="keyboard__item" data-key="KeyA">A</div>
                      <div class="keyboard__item" data-key="KeyS">S</div>
                      <div class="keyboard__item" data-key="KeyD">D</div>
@@ -104,10 +90,10 @@
                      <div class="keyboard__item" data-key="KeyL">L</div>
                      <div class="keyboard__item" data-key="Semicolon">;</div>
                      <div class="keyboard__item" data-key="Quote">'</div>
-                     <div class="keyboard__item itemSize__double">Enter</div>
+                     <div class="keyboard__item itemSize__double keyboard__item_disabled"></div>
                   </div>
                   <div class="keyboard__row">
-                     <div class="keyboard__item itemSize__doubleAndHalf">Shift</div>
+                     <div class="keyboard__item itemSize__doubleAndHalf keyboard__item_disabled"></div>
                      <div class="keyboard__item" data-key="KeyZ">Z</div>
                      <div class="keyboard__item" data-key="KeyX">X</div>
                      <div class="keyboard__item" data-key="KeyC">C</div>
@@ -118,17 +104,17 @@
                      <div class="keyboard__item" data-key="Comma">,</div>
                      <div class="keyboard__item" data-key="Period">.</div>
                      <div class="keyboard__item" data-key="Slash">/</div>
-                     <div class="keyboard__item itemSize__triple">Shift</div>
+                     <div class="keyboard__item itemSize__triple keyboard__item_disabled"></div>
                   </div>
                   <div class="keyboard__row">
-                     <div class="keyboard__item itemSize__oneAndHalf">Ctrl</div>
-                     <div class="keyboard__item">Win</div>
-                     <div class="keyboard__item itemSize__oneAndHalf">Alt</div>
+                     <div class="keyboard__item itemSize__oneAndHalf keyboard__item_disabled"></div>
+                     <div class="keyboard__item keyboard__item_disabled"></div>
+                     <div class="keyboard__item itemSize__oneAndHalf keyboard__item_disabled"></div>
                      <div class="keyboard__item itemSize__space" data-key="Space"></div>
-                     <div class="keyboard__item itemSize__oneAndHalf">Alt</div>
-                     <div class="keyboard__item">Win</div>
-                     <div class="keyboard__item">CM</div>
-                     <div class="keyboard__item itemSize__oneAndHalf">Ctrl</div>
+                     <div class="keyboard__item itemSize__oneAndHalf keyboard__item_disabled"></div>
+                     <div class="keyboard__item keyboard__item_disabled"></div>
+                     <div class="keyboard__item keyboard__item_disabled"></div>
+                     <div class="keyboard__item itemSize__oneAndHalf keyboard__item_disabled"></div>
                   </div>
                </div>
             </div>
@@ -218,10 +204,7 @@
             </div>
          </div>
       </div>
-   </div>
-
-   <script src="script/script.js"></script>
-   <script src="https://kit.fontawesome.com/0911116816.js" crossorigin="anonymous"></script>
+   </div>  
 </body>
 
 </html>

@@ -1,5 +1,4 @@
-let keysValues = {   // Значения клавиш
-   CapsIsActive: false, // Свойство для контроля нажатия CapsLock
+const keysValues = {   // Значения клавиш
    Rus: {   //Русская расладка
       "KeyA": "Ф",
       "KeyB": "И",
@@ -35,7 +34,6 @@ let keysValues = {   // Значения клавиш
       "Period": "Ю",
       "Slash": ".",
       "Space": " ",
-      "CapsLock": "CapsLock"
    },
    Eng: {   // Английская раскладка
       "KeyA": "A",
@@ -72,7 +70,6 @@ let keysValues = {   // Значения клавиш
       "Period": ".",
       "Slash": "/",
       "Space": " ",
-      "CapsLock": "CapsLock"
    }
 };
 
@@ -110,6 +107,7 @@ function showPreviousModal() {   // Показ предыдущего модал
 }
 
 function createText(language, size) {  // Генерация текста с HTML разметкой
+   const specialSymbols = ["!", ".", ",", "-", ":", "?"];   // Список символов, которые пользователь не должен будет вводить при печати. Не выделяются в тексте.
    let url = ""; // URL адрес по которому будет направлен запрос 
    let sentenceCount;   // Количество предложений в генерируемом тексте
    
@@ -126,16 +124,16 @@ function createText(language, size) {  // Генерация текста с HTM
    }
    // В зависимости от выбранного языка устанавливаем URL адрес на который будет отправлять запрос
    if (language === "Rus") url = `https://fish-text.ru/get?number=${sentenceCount}`;   
-   else url = `http://asdfast.beobit.net/api/?length=${sentenceCount}`;
+   else url = `https://baconipsum.com/api/?type=meat-and-filler&sentences=${sentenceCount * 2}`;
    
    fetch(url)  // Отправляем запрос
       .then(response => response.json())  // Дожидаемся полного ответа сервера и переводим ответ в формат JSON 
       .then(json => {   // В случае успеха обрабатываем ответ
-         let text = json.text;   // Получаем текст
+         let text = json.text || json[0];   // Получаем текст
          let textBody = document.querySelector(".trainerText__body");   // Находим элемент куда будем его вставлять
          text.split("").forEach(item => { // Для каждого символа текста
             let span = document.createElement("span");   // Создаем элемент
-            span.classList.add("trainerText__item");
+            if(specialSymbols.indexOf(item) === -1) span.classList.add("trainerText__item"); // Если символ не относится к специальным, то выделяем его
             span.textContent = item;   // Вставляем содержимое
             textBody.append(span);  // Вставляем элемент на страницу
          });
@@ -144,7 +142,17 @@ function createText(language, size) {  // Генерация текста с HTM
 }
 
 function changeKeyboardLanguage(language) { // Изменение раскладки клавиатуры
+   if (language === "Eng") {  // Переключение иконки выбранного языка
+      document.querySelector(".trainer-lng_rus").classList.add("not-displayed");
+      document.querySelector(".trainer-lng_eng").classList.remove("not-displayed");
+   }
+   else {
+      document.querySelector(".trainer-lng_rus").classList.remove("not-displayed");
+      document.querySelector(".trainer-lng_eng").classList.add("not-displayed");
+   }
+
    let keys = document.querySelectorAll(".keyboard__item[data-key]");   // Получаем все объкты клавиш
+   
    keys.forEach(item => {  // Для каждой клавиши
       let keyCode = item.dataset.key;  // Узнаем её ключ из data-атрибута 
       item.textContent = keysValues[language][keyCode]; // Вставляем в объект клавиши подходящую букву в соответствии с выбранным языком и ключом
@@ -155,16 +163,10 @@ function keyHighlight(e) { // Подсветка нажатых клавиш
    let keyCode = e.code;   // Получаем ключ нажатой на клавиатуре клавиши
    let key = document.querySelector(`.keyboard__item[data-key="${keyCode}"]`);   // Находим соответствующий её объект
    if (key != null) {   // Если такой объект найден
-      if (keyCode === "CapsLock") { // Если был нажат CapsLock
-         keysValues.CapsIsActive = !keysValues.CapsIsActive;   // Меняем свойство контроля нажатия CapsLock
-         key.classList.toggle("keyHighlight")   // И подсвечиваем его
-      }
-      else {   // Если нажата другая клавиша
-         key.classList.add("keyHighlight");  // Подсвечиваем её на короткое время
-         setTimeout((key) => {
-            key.classList.remove("keyHighlight");
-         }, 400, key);
-      }
+      key.classList.add("keyHighlight");  // Подсвечиваем её на короткое время
+      setTimeout((key) => {
+         key.classList.remove("keyHighlight");
+      }, 400, key);
    }
 }
 
@@ -204,7 +206,7 @@ class Timer {
 
 function startTimer() { // Запуск таймера   
    let timerHTMLElem = document.querySelector(".trainer-timer");  // HTML объект таймера
-   let timerTip = document.querySelector(".info__message .text").classList.add("not-displayed");  // Подсказка о включении таймера при начале печати
+   document.querySelector(".info__message .text").classList.add("not-displayed");  // Подсказка о включении таймера при начале печати
    let timerObj = new Timer(timerHTMLElem);  // Новый объект таймера
    timerObj.start(); // Запуск таймера
    return timerObj;
