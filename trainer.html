@@ -17,7 +17,7 @@
       <header class="header">
          <div class="container">
             <div class="header__body">
-               <div class="header__logo">Logo</div>
+               <div class="header__logo"><a href="index.html">Logo</a></div>
                <nav class="header__menu">
                   <ul>
                      <li><a href="index.html">Уроки</a></li>
@@ -135,73 +135,46 @@
          <a href="index.html" class="modal__close-btn">
             <i class="fa-solid fa-xmark fa-3x"></i>
          </a>
-         <div class="modal__back-btn hidden">
-            <i class="fa-solid fa-arrow-left-long fa-3x"></i>
-         </div>
          <div class="modal__body">
-
-            <div class="modal__content" data-order="1">
-               <h2>Выбор текста</h2>
-               <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis pariatur animi
-                  dolor.
-                  Repellendus reprehenderit expedita eum magnam iste, architecto adipisci nisi nostrum tempore quisquam
-                  ab
-                  in magni eligendi ipsum numquam aut dolorem pariatur suscipit laudantium? Soluta similique tempora
-                  harum!
-                  Porro laborum recusandae in, provident perferendis suscipit unde nemo tenetur! Natus?
+            <h2>Настройки</h2>
+            <div class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi, magni.</div>
+            <div class="tabs modal__item">
+               <div class="tabs__row">
+                  <div class="tabs__row-item active" data-tab="1">Сгенерировать</div>
+                  <div class="tabs__row-item" data-tab="2">Свой</div>
                </div>
-               <div class="modal__choose">
-                  <div class="modal__choose-btn" data-choose="Gen">
-                     <div class="text">Сгенерировать</div>
+               <div class="tabs__content">
+                  <div class="tabs__content-item" data-tab="1">
+                     <form action="" class="tabs__form">
+                        <fieldset class="tabs__form-item">
+                           <legend class="tabs__form-legend">Язык текста:</legend>
+                           <input type="radio" name="text-language" id="Rus" value="Rus" checked>
+                           <label for="Rus">Русский</label>
+                           <input type="radio" name="text-language" id="Eng" value="Eng">
+                           <label for="Eng">Английский</label>
+                        </fieldset>
+                        <fieldset class="tabs__form-item">
+                           <legend class="tabs__form-legend">Размер текста:</legend>
+                           <input type="radio" name="text-size" id="Small" value="Small">
+                           <label for="Small">Маленький</label>
+                           <input type="radio" name="text-size" id="Medium" value="Medium" checked>
+                           <label for="Medium">Средний</label>
+                           <input type="radio" name="text-size" id="Big" value="Big">
+                           <label for="Big">Большой</label>
+                        </fieldset>
+                        <fieldset class="tabs__form-item">
+                           <legend class="tabs__form-legend">Подсказки по клавишам:</legend>
+                           <input type="radio" name="text-tips" id="without" value="Without" checked>
+                           <label for="without">Выключить</label>
+                           <input type="radio" name="text-tips" id="with" value="With">
+                           <label for="with">Включить</label>
+                        </fieldset>  
+                        <button type="submit" class="tabs__form-btn">Сгенерировать!</button>
+                     </form>
                   </div>
-                  <div class="modal__choose-btn" data-choose="Own">
-                     <div class="text">Свой</div>
-                  </div>
+                  <div class="tabs__content-item" data-tab="2"></div>
                </div>
-            </div>
-
-            <div class="modal__content not-displayed" data-order="2">
-               <h2>Выбор языка</h2>
-               <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis pariatur animi
-                  dolor.
-                  Repellendus reprehenderit expedita eum magnam iste, architecto adipisci nisi nostrum tempore quisquam
-                  ab
-                  in magni eligendi ipsum numquam aut dolorem pariatur suscipit laudantium? Soluta similique tempora
-                  harum!
-                  Porro laborum recusandae in, provident perferendis suscipit unde nemo tenetur! Natus?
-               </div>
-               <div class="modal__choose">
-                  <div class="modal__choose-btn" data-choose="Rus">
-                     <div class="text">Русский</div>
-                  </div>
-                  <div class="modal__choose-btn" data-choose="Eng">
-                     <div class="text">Английский</div>
-                  </div>
-               </div>
-            </div>
-
-            <div class="modal__content not-displayed" data-order="3">
-               <h2>Размер текста</h2>
-               <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis pariatur animi
-                  dolor.
-                  Repellendus reprehenderit expedita eum magnam iste, architecto adipisci nisi nostrum tempore quisquam
-                  ab
-                  in magni eligendi ipsum numquam aut dolorem pariatur suscipit laudantium? Soluta similique tempora
-                  harum!
-                  Porro laborum recusandae in, provident perferendis suscipit unde nemo tenetur! Natus?
-               </div>
-               <div class="modal__choose">
-                  <div class="modal__choose-btn" data-choose="Small">
-                     <div class="text">Небольшой</div>
-                  </div>
-                  <div class="modal__choose-btn" data-choose="Medium">
-                     <div class="text">Средний</div>
-                  </div>
-                  <div class="modal__choose-btn" data-choose="Big">
-                     <div class="text">Большой</div>
-                  </div>
-               </div>
-            </div>
+            </div>         
          </div>
       </div>
    </div>  

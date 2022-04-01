@@ -117,7 +117,7 @@
 }
 
 .keyboard__item_disabled{
-  background-color: rgba(128, 128, 128, 0.651);
+  background: url("../img/disable_buttons_bg.png") 0 0, rgba(128, 128, 128, 0.651);
 }
 
 .itemSize__oneAndHalf {
@@ -140,8 +140,13 @@
   width: calc(var(--keyboard-item-width) * 6.5);
 }
 
-.keyHighlight {
+.keyTempHighlight {
   background-color: black;
+  color: #fff;
+}
+
+.keyConstantHighlight{
+  background-color: lightblue;
   color: #fff;
 }
 

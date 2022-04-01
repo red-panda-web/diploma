@@ -81,8 +81,7 @@ h2 {
   border-radius: 10px;
 }
 
-.modal__close-btn,
-.modal__back-btn {
+.modal__close-btn{
   position: absolute;
   top: 20px;
   width: 20px;
@@ -94,42 +93,85 @@ h2 {
   right: 20px;
 }
 
-.modal__back-btn {
-  right: 70px;
-}
-
 .modal__body {
   padding: 20px 20px 0 20px;
 }
 
-.modal__choose {
-  display: flex;
-  justify-content: space-between;
-  padding: 40px 0;
+.modal__item{
+  margin-top: 20px;
 }
 
-.modal__choose-btn {
-  height: 40px;
+/* ================================== */
+
+/* Стили табов */
+.tabs{
+  font-size: 1.6rem;
+}
+
+.tabs__row{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #000;
-  border-radius: 15px;
-  color: #fff;
+}
+
+.tabs__row-item{
+  flex-basis: 50%;
+  text-align: center;
+  padding: 10px 0;
   cursor: pointer;
+  border-bottom: 1px solid gray;
 }
 
-.modal__content[data-order="1"] .modal__choose-btn,
-.modal__content[data-order="2"] .modal__choose-btn {
-  width: 45%;
+.tabs__form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.modal__content[data-order="3"] .modal__choose-btn {
-  width: 30%;
+.tabs__form-legend{
+  margin-bottom: 15px;
 }
 
-.modal[data-modalType="info"] .modal__choose-btn {
-  width: 50%;
+.tabs__form-item{
+  display: flex;
+  width: 100%;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  border-bottom: 1px solid lightgray;
 }
 
+.tabs__form-item input[type='radio']{
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.tabs__form-item label{
+  flex-grow: 1;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabs__row-item.active,
+.tabs__form-item input[type='radio']:checked + label{
+  background-color: #000;
+  color: #fff;
+}
+
+.tabs__form-btn{
+  width: 250px;
+  padding: 10px;
+  margin: 25px 0 15px 0;
+  border-radius: 10px;
+  background-color: rgb(8, 138, 8);
+  color: #fff;
+  font-size: 1.6rem;
+  transition: background-color 0.2s ease-in;
+}
+
+.tabs__form-btn:hover{
+  background-color: rgb(10, 179, 10);
+}
 /* ================================== */
