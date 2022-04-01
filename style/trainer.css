@@ -106,6 +106,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   width: var(--keyboard-item-width);
   height: var(--keyboard-item-height);
   transition: all 0.1s linear 0.3s;
@@ -114,6 +115,14 @@
   -webkit-box-shadow: 0px 0px 8px 5px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 0px 0px 8px 5px rgba(34, 60, 80, 0.2);
   box-shadow: 0px 0px 8px 5px rgba(34, 60, 80, 0.2);
+}
+
+.keyboard__item[data-key="KeyF"]::after,
+.keyboard__item[data-key="KeyJ"]::after{
+  content: "—";
+  display: block;
+  position: absolute;
+  bottom: 5px;
 }
 
 .keyboard__item_disabled{
