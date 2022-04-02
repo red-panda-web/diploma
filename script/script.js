@@ -73,10 +73,17 @@ const keysValues = {   // Значения клавиш
    }
 };
 
-const trainerSettings = {  // Настройки тренажера
-   language: "Rus",
-   textSize: "Medium",
-   needTips: false,
+const trainer = {  // Параметры тренажера
+   settings: {
+      language: "Rus",
+      textSize: "Medium",
+      needTips: false,
+      timerObj: {},
+   },
+   results: {
+      errors: 0,
+      typedSymbols: 0,
+   }
 }
 
 function getFormData(e) {  // Получение и установка настроек тренажера
@@ -85,14 +92,14 @@ function getFormData(e) {  // Получение и установка наст�
    const languageRadio = Array.from(form.elements["text-language"]); // Считываем все возможные варианты языка, размера текста, и подсказок
    const textSizeRadio = Array.from(form.elements["text-size"]);
    const tipsRadio = Array.from(form.elements["text-tips"]);
-   trainerSettings.language = languageRadio.find(item => item.checked).value; // Получаем выбранные пользователем варианты и устанавливаем свойства в объект настроек
-   trainerSettings.textSize = textSizeRadio.find(item => item.checked).value;
+   trainer.settings.language = languageRadio.find(item => item.checked).value; // Получаем выбранные пользователем варианты и устанавливаем свойства в объект настроек
+   trainer.settings.textSize = textSizeRadio.find(item => item.checked).value;
    const tips = tipsRadio.find(item => item.checked).value;
 
-   tips === "With" ? trainerSettings.needTips = true : trainerSettings.needTips = false;
+   tips === "With" ? trainer.settings.needTips = true : trainer.settings.needTips = false;
 
-   changeKeyboardLanguage(trainerSettings.language);  // Меняем раскладку клавиатуры в соответствии с выбранным языком
-   createText(trainerSettings.language, trainerSettings.textSize);   // Создаем текст
+   changeKeyboardLanguage(trainer.settings.language);  // Меняем раскладку клавиатуры в соответствии с выбранным языком
+   createText(trainer.settings.language, trainer.settings.textSize);   // Создаем текст
 }
 
 function createText(language, size) {  // Генерация текста с HTML разметкой
@@ -115,10 +122,10 @@ function createText(language, size) {  // Генерация текста с HTM
          appendText(text); // Вставляем текст
       })
       .then(() => {
-         hideModal(".modal")  // Прячем модально окно
+         hideModal(".modal_trainer-settings")  // Прячем модально окно
       })
       .then(() => {
-         if (trainerSettings.needTips) addKeyHighlight(); // Если включены подсказки, то подсвечиваем первую клавишу на клавиатуре, которую необходимо нажать
+         if (trainer.settings.needTips) addKeyHighlight(); // Если включены подсказки, то подсвечиваем первую клавишу на клавиатуре, которую необходимо нажать
          addKeydownListeners(); // Активируем события нажатия клавиш
       })
       .catch(error => alert(error)); // В случае ошибки – выводим её  
@@ -140,15 +147,19 @@ function appendText(text) {   // Вставка текста с HTML разме�
 
          textBody.append(span);  // Вставляем элемент на страницу 
       }
-      else textBody.append(item);   // Если символ относиться к специальным, то просто вставляем его без эдемента
+      else textBody.append(item);   // Если символ относиться к специальным, то просто вставляем его без элемента
    });
 }
 
 function addKeydownListeners() { // Добавляем обработчики событий для проверки вводимых символов, подсветки клавиш, активации таймера
    document.addEventListener("keydown", checkSymbol);
-   document.addEventListener("keydown", startTimer, { once: true });
    document.addEventListener("keydown", addTempKeyHighlight);  
-   if (trainerSettings.needTips) document.addEventListener("keydown", addKeyHighlight) // Если включены подсказки, то добавляем подсвтеку нужных клавиш
+   if (trainer.settings.needTips) document.addEventListener("keydown", addKeyHighlight) // Если включены подсказки, то добавляем подсвтеку нужных клавиш
+}
+
+function showModal(modalElemClass) { // Функция показа модального окна
+   document.querySelector(modalElemClass).classList.remove("hidden");   // Скрываем полностью модальное окно
+   document.querySelector("body").classList.add("lock"); // Разблокируем скрол страницы
 }
 
 function hideModal(modalElemClass) {   // Функция скрытия модального окна
@@ -157,9 +168,11 @@ function hideModal(modalElemClass) {   // Функция скрытия мода
 }
 
 function checkSymbol(e) {  // Проверка нажатой клавиши
-   const language = trainerSettings.language; // Выбранный язык текста
+   const language = trainer.settings.language; // Выбранный язык текста
 
    if (Object.keys(keysValues[language]).indexOf(e.code) != -1) { // Проверяем что нажата проверяемая клавиша (буквенная или пробел)
+
+      if (trainer.results.typedSymbols === 0) trainer.settings.timerObj = startTimer();   // Если напечатан первый символ, то запускаем таймер
 
       if (e.code === "Space") e.preventDefault();  // Если был нажат пробел, то отключаем стандартную прокрутку страницы при его нажатии
 
@@ -175,14 +188,20 @@ function checkSymbol(e) {  // Проверка нажатой клавиши
       else {   // Если пользователь нажал неверную клавишу
          currentSymbol.classList.remove("trainerText__item_current");    // Убираем у текущего символа соответствующий класс
          currentSymbol.classList.add("trainerText__item_wrong");  /// И отмечаем его как неверно нажатый
+         trainer.results.errors++;  // Считаем ошибки
       }
 
-      if (trainerSettings.needTips) removeKeyHighlight();   // Если включены подсказки, то убираем текущую подсказку
+      if (trainer.settings.needTips) removeKeyHighlight();   // Если включены подсказки, то убираем текущую подсказку
+
+      trainer.results.typedSymbols++;  // Считаем напечатанные символы
 
       if (nextSymbol != null) {  // Если это был не последний символ текста
          nextSymbol.classList.add("trainerText__item_current");   // То обозначаем следующий символ текста как текущий
       }
-      else alert("Конец текста, вывод статистики");   // Иначе выводим статистику
+      else {   // Иначе
+         stopTimer(trainer.settings.timerObj);  // Останавливаем таймер
+         showStatistics(); // Показываем статистику
+      } 
    }
 }
 
@@ -218,7 +237,7 @@ function addTempKeyHighlight(e) { // Временная подсветка на�
 
 function addKeyHighlight() { // Постоянная (до нажатия) подсветка клавиш клавиатуры
    const currentSymbol = document.querySelector(".trainerText__item_current").textContent;  // Текущий символ из текста, клавишу с которым следует нажать пользователю
-   const language = trainerSettings.language // Выбранный язык текста
+   const language = trainer.settings.language // Выбранный язык текста
    const objProp = Object.entries(keysValues[language]);   // Пары ключ-значение объекта выбранного языка
    const key = objProp.find(item => item[1] === currentSymbol.toUpperCase()) // Находим ключ по символу
 
@@ -227,7 +246,7 @@ function addKeyHighlight() { // Постоянная (до нажатия) по�
    keyboardBtn.classList.add("keyConstantHighlight");
 }
 
-function removeKeyHighlight() {
+function removeKeyHighlight() {  // Выключение подсветки клавиши
    document.querySelector(".keyConstantHighlight").classList.remove("keyConstantHighlight");
 }
 
@@ -285,5 +304,55 @@ function stopTimer(timerObj) {   // Остановка таймера
    timerObj.stop();
 }
 
+function tabs(e) {   // Переключение вкладок
+   if (e.target.classList.contains("tabs__row-item")) {  // Проверяем был ли клик по вкладке
+      const currentTab = document.querySelector(".tabs__row-item.active"); // Получаем текущую активную вкладку
+      if (currentTab != e.target) { // Проверяем чтобы клик был не по ней же
+         const currentContent = document.querySelector(".tabs__content-item.active");  // Получаем текущее содержимое вкладки
+         const aimTab = e.target;   // Вкладка по которой было нажатие
+         const aimContent = document.querySelector(`.tabs__content-item[data-tab='${aimTab.dataset.tab}']`);   // и её контент
+
+         currentTab.classList.remove("active"); // Перключаем вкладки
+         currentContent.classList.remove("active");
+         currentContent.classList.add("not-displayed");
+
+         aimTab.classList.add("active");
+         aimContent.classList.remove("not-displayed");
+         aimContent.classList.add("active");
+      }
+   }
+
+}
+
+function showStatistics() {   // Показ статистики
+   const language = trainer.settings.language;  // Считываем конечные данные
+   const textSize = trainer.settings.textSize;
+   const symbolsCount = document.querySelectorAll(".trainerText__item").length;
+   const erros = trainer.results.errors;
+   const time = document.querySelector(".trainer-timer").textContent;
+   const timeInSec = trainer.settings.timerObj.hours * 3600 + trainer.settings.timerObj.mins * 60 + trainer.settings.timerObj.secs;
+   const accuracy = 100 - (erros / symbolsCount * 100);
+   const typeSpeed = symbolsCount / timeInSec * 60;
+
+   const languageCellTable = document.querySelector(".result-table__language");  // Находим куда будем их вставлять
+   const textSizeCellTable = document.querySelector(".result-table__text-size");
+   const symbolsCountCellTable = document.querySelector(".result-table__symbols-count");
+   const errorsCellTable = document.querySelector(".result-table__errors");
+   const accuracyCellTable = document.querySelector(".result-table__accuracy");
+   const timeCellTable = document.querySelector(".result-table__time");
+   const typeSpeedCellTable = document.querySelector(".result-table__type-speed");
+
+   languageCellTable.textContent = language === "Rus" ? "Русский" : "Английский";   // И вставляем
+   textSizeCellTable.textContent = textSize === "Small" ? "Маленький" : textSize === "Medium" ? "Средний" : "Большой";
+   symbolsCountCellTable.textContent = symbolsCount;
+   errorsCellTable.textContent = erros;
+   accuracyCellTable.textContent = accuracy.toFixed(2) + " %";
+   timeCellTable.textContent = time;
+   typeSpeedCellTable.textContent = typeSpeed.toFixed(2) + " зн/мин.";
+
+   showModal(".modal_result");   // Показываем модалку со статистикой
+}
+
+document.querySelector(".tabs").addEventListener("click", tabs)   // Переключение вкладок
 document.querySelector(".tabs__form-btn").addEventListener("click", getFormData); // Считывание выбранных параметров тренажера
 

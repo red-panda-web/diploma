@@ -58,7 +58,7 @@
             </div>
          </section>
 
-         <section class="keyboard" data-language="">
+         <section class="keyboard">
             <div class="container">
                <div class="keyboard__body">
                   <div class="keyboard__row">
@@ -130,7 +130,7 @@
       </footer>
    </div>
 
-   <div class="modal">
+   <div class="modal modal_trainer-settings">
       <div class="modal__window">
          <a href="index.html" class="modal__close-btn">
             <i class="fa-solid fa-xmark fa-3x"></i>
@@ -144,7 +144,7 @@
                   <div class="tabs__row-item" data-tab="2">Свой</div>
                </div>
                <div class="tabs__content">
-                  <div class="tabs__content-item" data-tab="1">
+                  <div class="tabs__content-item active" data-tab="1">
                      <form action="" class="tabs__form">
                         <fieldset class="tabs__form-item">
                            <legend class="tabs__form-legend">Язык текста:</legend>
@@ -169,15 +169,74 @@
                            <input type="radio" name="text-tips" id="with" value="With">
                            <label for="with">Включить</label>
                         </fieldset>  
-                        <button type="submit" class="tabs__form-btn">Сгенерировать!</button>
+                        <button type="submit" class="modal__btn tabs__form-btn">Сгенерировать!</button>
                      </form>
                   </div>
-                  <div class="tabs__content-item" data-tab="2"></div>
+                  <div class="tabs__content-item not-displayed" data-tab="2">
+                     <div class="text">В разработке</div>
+                  </div>
                </div>
             </div>         
          </div>
       </div>
    </div>  
+
+   <div class="modal modal_result hidden">
+      <div class="modal__window">
+         <a href="index.html" class="modal__close-btn">
+            <i class="fa-solid fa-xmark fa-3x"></i>
+         </a>
+         <div class="modal__body">
+            <h2>Результат</h2>
+            <h3>Статистика:</h3> 
+            <table class="result-table">
+               <thead>
+                  <tr>
+                     <td>Параметр</td>
+                     <td>Результат</td>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Язык текста:</td>
+                     <td class="result-table__language"></td>
+                  </tr>
+                  <tr>
+                     <td>Размер текста:</td>
+                     <td class="result-table__text-size"></td>
+                  </tr>
+                  <tr>
+                     <td>Общее количество символов:</td>
+                     <td class="result-table__symbols-count"></td>
+                  </tr>
+                  <tr>
+                     <td>Ошибок:</td>
+                     <td class="result-table__errors"></td>
+                  </tr>
+                  <tr>
+                     <td>Точность:</td>
+                     <td class="result-table__accuracy"></td>
+                  </tr>
+                  <tr>
+                     <td>Время:</td>
+                     <td class="result-table__time"></td>
+                  </tr>
+                  <tr>
+                     <td>Скорость печати:</td>
+                     <td class="result-table__type-speed"></td>
+                  </tr>
+                  <tr>
+                     <td colspan="2">
+                        <button class="modal__btn modal__btn_try-again" onclick="location.reload()">Попробовать ещё раз</button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>   
+            
+         </div>
+      </div>
+   </div>
+
 </body>
 
 </html>

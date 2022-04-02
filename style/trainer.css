@@ -160,3 +160,18 @@
 }
 
 /* ================================== */
+
+/* Стили для таблицы результатов */
+.result-table{
+  width: 100%;
+  font-size: 1.6rem;
+  border-spacing: 0 20px;
+}
+
+.result-table thead{
+  font-weight: bold;
+}
+
+.result-table tr{
+  border-bottom: 1px solid gray;
+}
