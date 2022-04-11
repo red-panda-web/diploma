@@ -9,7 +9,7 @@
    <link rel="stylesheet" href="style/trainer.css">
    <title>Тренажер</title>
    <script defer src="https://kit.fontawesome.com/0911116816.js" crossorigin="anonymous"></script>
-   <script defer src="script/script.js"></script>
+   <script type="module" src="script/scriptTrainer.js"></script>
 </head>
 
 <body class="lock">
@@ -164,9 +164,9 @@
                         </fieldset>
                         <fieldset class="tabs__form-item">
                            <legend class="tabs__form-legend">Подсказки по клавишам:</legend>
-                           <input type="radio" name="text-tips" id="without" value="Without" checked>
+                           <input type="radio" name="text-hints" id="without" value="Without" checked>
                            <label for="without">Выключить</label>
-                           <input type="radio" name="text-tips" id="with" value="With">
+                           <input type="radio" name="text-hints" id="with" value="With">
                            <label for="with">Включить</label>
                         </fieldset>  
                         <button type="submit" class="modal__btn tabs__form-btn">Сгенерировать!</button>
