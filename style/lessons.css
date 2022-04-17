@@ -3,27 +3,20 @@
   margin-bottom: 40px;
 }
 
-/* ================================== */
-
-/* Стили списка уроков */
-.lessons__item{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  border: 1px solid gray;
-  border-radius: 5px;
-}
-
-.lessons__item + .lessons__item{
-  margin-top: 20px;
-}
-
 .lessons__btn{
-  padding: 10px;
+  width: 300px;
+  margin: 20px auto;
   font-size: 1.6rem;
-  border: 1px dashed black;
+  color: #fff;
+  text-align: center;
+  background-color: #000;
+  border-radius: 20px;
   cursor: pointer;
+}
+
+.lessons__btn a{
+  display: block;
+  padding: 10px;
 }
 
 /* ================================== */

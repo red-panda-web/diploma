@@ -20,7 +20,8 @@
                <div class="header__logo"><a href="index.html">Logo</a></div>
                <nav class="header__menu">
                   <ul>
-                     <li><a href="index.html">Уроки</a></li>
+                     <li><a href="index.html">Главная</a></li>
+                     <li><a href="lesson.html">Уроки</a></li>
                      <li><a href="trainer.html">Тренажер</a></li>
                      <li><a href="#!">Профиль</a></li>
                   </ul>
@@ -54,6 +55,10 @@
          <section class="trainerText">
             <div class="container">
                <div class="trainerText__body">
+                  <form class="trainerText__entered">
+                     <textarea class="trainerText__entered-area"></textarea>
+                  </form>
+                  <div class="trainerText__original"></div>
                </div>
             </div>
          </section>
@@ -62,49 +67,65 @@
             <div class="container">
                <div class="keyboard__body">
                   <div class="keyboard__row">
+                     <div class="keyboard__item keyboard__item_disabled"></div>
+                     <div class="keyboard__item" data-key="Digit1"></div>
+                     <div class="keyboard__item" data-key="Digit2"></div>
+                     <div class="keyboard__item" data-key="Digit3"></div>
+                     <div class="keyboard__item" data-key="Digit4"></div>
+                     <div class="keyboard__item" data-key="Digit5"></div>
+                     <div class="keyboard__item" data-key="Digit6"></div>
+                     <div class="keyboard__item" data-key="Digit7"></div>
+                     <div class="keyboard__item" data-key="Digit8"></div>
+                     <div class="keyboard__item" data-key="Digit9"></div>
+                     <div class="keyboard__item" data-key="Digit0"></div>
+                     <div class="keyboard__item" data-key="Minus"></div>
+                     <div class="keyboard__item" data-key="Equal"></div>
+                     <div class="keyboard__item itemSize__double keyboard__item_disabled"></div>
+                  </div>
+                  <div class="keyboard__row">
                      <div class="keyboard__item itemSize__oneAndHalf keyboard__item_disabled"></div>
-                     <div class="keyboard__item" data-key="KeyQ">Q</div>
-                     <div class="keyboard__item" data-key="KeyW">W</div>
-                     <div class="keyboard__item" data-key="KeyE">E</div>
-                     <div class="keyboard__item" data-key="KeyR">R</div>
-                     <div class="keyboard__item" data-key="KeyT">T</div>
-                     <div class="keyboard__item" data-key="KeyY">Y</div>
-                     <div class="keyboard__item" data-key="KeyU">U</div>
-                     <div class="keyboard__item" data-key="KeyI">I</div>
-                     <div class="keyboard__item" data-key="KeyO">O</div>
-                     <div class="keyboard__item" data-key="KeyP">P</div>
-                     <div class="keyboard__item" data-key="BracketLeft">[</div>
-                     <div class="keyboard__item" data-key="BracketRight">]</div>
+                     <div class="keyboard__item" data-key="KeyQ"></div>
+                     <div class="keyboard__item" data-key="KeyW"></div>
+                     <div class="keyboard__item" data-key="KeyE"></div>
+                     <div class="keyboard__item" data-key="KeyR"></div>
+                     <div class="keyboard__item" data-key="KeyT"></div>
+                     <div class="keyboard__item" data-key="KeyY"></div>
+                     <div class="keyboard__item" data-key="KeyU"></div>
+                     <div class="keyboard__item" data-key="KeyI"></div>
+                     <div class="keyboard__item" data-key="KeyO"></div>
+                     <div class="keyboard__item" data-key="KeyP"></div>
+                     <div class="keyboard__item" data-key="BracketLeft"></div>
+                     <div class="keyboard__item" data-key="BracketRight"></div>
                      <div class="keyboard__item itemSize__oneAndHalf keyboard__item_disabled"></div>
                   </div>
                   <div class="keyboard__row">
                      <div class="keyboard__item itemSize__double keyboard__item_disabled"></div>
-                     <div class="keyboard__item" data-key="KeyA">A</div>
-                     <div class="keyboard__item" data-key="KeyS">S</div>
-                     <div class="keyboard__item" data-key="KeyD">D</div>
-                     <div class="keyboard__item" data-key="KeyF">F</div>
-                     <div class="keyboard__item" data-key="KeyG">G</div>
-                     <div class="keyboard__item" data-key="KeyH">H</div>
-                     <div class="keyboard__item" data-key="KeyJ">J</div>
-                     <div class="keyboard__item" data-key="KeyK">K</div>
-                     <div class="keyboard__item" data-key="KeyL">L</div>
-                     <div class="keyboard__item" data-key="Semicolon">;</div>
-                     <div class="keyboard__item" data-key="Quote">'</div>
+                     <div class="keyboard__item" data-key="KeyA"></div>
+                     <div class="keyboard__item" data-key="KeyS"></div>
+                     <div class="keyboard__item" data-key="KeyD"></div>
+                     <div class="keyboard__item" data-key="KeyF"></div>
+                     <div class="keyboard__item" data-key="KeyG"></div>
+                     <div class="keyboard__item" data-key="KeyH"></div>
+                     <div class="keyboard__item" data-key="KeyJ"></div>
+                     <div class="keyboard__item" data-key="KeyK"></div>
+                     <div class="keyboard__item" data-key="KeyL"></div>
+                     <div class="keyboard__item" data-key="Semicolon"></div>
+                     <div class="keyboard__item" data-key="Quote"></div>
                      <div class="keyboard__item itemSize__double keyboard__item_disabled"></div>
                   </div>
                   <div class="keyboard__row">
-                     <div class="keyboard__item itemSize__doubleAndHalf keyboard__item_disabled"></div>
-                     <div class="keyboard__item" data-key="KeyZ">Z</div>
-                     <div class="keyboard__item" data-key="KeyX">X</div>
-                     <div class="keyboard__item" data-key="KeyC">C</div>
-                     <div class="keyboard__item" data-key="KeyV">V</div>
-                     <div class="keyboard__item" data-key="KeyB">B</div>
-                     <div class="keyboard__item" data-key="KeyN">N</div>
-                     <div class="keyboard__item" data-key="KeyM">M</div>
-                     <div class="keyboard__item" data-key="Comma">,</div>
-                     <div class="keyboard__item" data-key="Period">.</div>
-                     <div class="keyboard__item" data-key="Slash">/</div>
-                     <div class="keyboard__item itemSize__triple keyboard__item_disabled"></div>
+                     <div class="keyboard__item itemSize__doubleAndHalf" data-key="ShiftLeft"></div>
+                     <div class="keyboard__item" data-key="KeyZ"></div>
+                     <div class="keyboard__item" data-key="KeyX"></div>
+                     <div class="keyboard__item" data-key="KeyC"></div>
+                     <div class="keyboard__item" data-key="KeyV"></div>
+                     <div class="keyboard__item" data-key="KeyB"></div>
+                     <div class="keyboard__item" data-key="KeyN"></div>
+                     <div class="keyboard__item" data-key="KeyM"></div>
+                     <div class="keyboard__item" data-key="Comma"></div>
+                     <div class="keyboard__item" data-key="Period"></div>
+                     <div class="keyboard__item" data-key="Slash"></div>
+                     <div class="keyboard__item itemSize__triple" data-key="ShiftRight"></div>
                   </div>
                   <div class="keyboard__row">
                      <div class="keyboard__item itemSize__oneAndHalf keyboard__item_disabled"></div>
@@ -155,12 +176,7 @@
                         </fieldset>
                         <fieldset class="tabs__form-item">
                            <legend class="tabs__form-legend">Размер текста:</legend>
-                           <input type="radio" name="text-size" id="Small" value="Small">
-                           <label for="Small">Маленький</label>
-                           <input type="radio" name="text-size" id="Medium" value="Medium" checked>
-                           <label for="Medium">Средний</label>
-                           <input type="radio" name="text-size" id="Big" value="Big">
-                           <label for="Big">Большой</label>
+                           <input type="text" id="text-size" placeholder="Введите количество предложений (не более 10)"> 
                         </fieldset>
                         <fieldset class="tabs__form-item">
                            <legend class="tabs__form-legend">Подсказки по клавишам:</legend>

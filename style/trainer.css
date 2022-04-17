@@ -36,15 +36,37 @@
 }
 
 .trainerText__body {
+  display: flex;
   max-height: 350px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 20px;
+  padding: 20px 0;
   border: 1px solid gray;
+  overflow-x: hidden;
+}
+
+.trainerText__entered,
+.trainerText__original{
+  padding: 0 10px;
+  flex-basis: 50%;
+}
+  
+.trainerText__entered-area,
+.trainerText__original{
   text-align: justify;
   font-weight: 600;
   font-size: 2rem;
   line-height: 1.5;
+}
+
+.trainerText__entered-area{
+  width: 100%;
+  height: 100%;
+  resize: none;
+  letter-spacing: 14px;
+}
+
+.trainerText__original{
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .trainerText__item {
@@ -106,6 +128,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   position: relative;
   width: var(--keyboard-item-width);
   height: var(--keyboard-item-height);
