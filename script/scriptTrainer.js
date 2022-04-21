@@ -2,11 +2,7 @@ import Timer from "./timer.js";
 import keyboard from "./keyboard.js";
 import { showModal, hideModal } from "./modal.js";
 const trainer = {
-    settings: {
-        textSize: 2,
-        textUnitType: "sentence",
-        timerObj: undefined,
-    },
+    timerObj: new Timer(),
     results: {
         errors: 0,
         typedSymbols: 0,
@@ -26,25 +22,28 @@ const trainer = {
 try {
     // Получение и установка настроек тренажера
     function getFormData(e) {
-        var _a, _b;
+        var _a, _b, _c;
         e.preventDefault(); // Предотвращеаем стандартное поведение кнопки "Submit"
         // Считываем все возможные варианты языка, подсказок, размер текста, вид получаемого текста (предложения или абзацы) 
         const languageRadio = Array.from(document.getElementsByName("text-language"));
-        const textSize = document.querySelector("#text-size");
+        const textSizeElem = document.querySelector("#text-size");
         const hintsRadio = Array.from(document.getElementsByName("text-hints"));
         // Получаем выбранные пользователем варианты и устанавливаем свойства в объект тренера и клавиатуры
-        if (textSize != undefined && +textSize.value > 0 && +textSize.value <= 10)
-            trainer.settings.textSize = +textSize.value;
-        else
+        let textSize = 0;
+        if (textSizeElem != undefined && +textSizeElem.value > 0 && +textSizeElem.value <= 10)
+            textSize = +textSizeElem.value;
+        else {
+            (_a = document.querySelector(".text-size-error")) === null || _a === void 0 ? void 0 : _a.classList.remove("not-displayed");
             throw new Error("Text size is undefined or incorrect");
-        const language = (_a = languageRadio.find((item) => item.checked)) === null || _a === void 0 ? void 0 : _a.value;
+        }
+        const language = (_b = languageRadio.find((item) => item.checked)) === null || _b === void 0 ? void 0 : _b.value;
         if (language != undefined) {
             keyboard.keyboardLanguage = language;
             keyboard.setLanguage(language);
         }
         else
             throw new Error("Language is undefined");
-        const hints = (_b = hintsRadio.find((item) => item.checked)) === null || _b === void 0 ? void 0 : _b.value;
+        const hints = (_c = hintsRadio.find((item) => item.checked)) === null || _c === void 0 ? void 0 : _c.value;
         if (hints != undefined) {
             if (hints === "With")
                 keyboard.hints = true;
@@ -54,7 +53,7 @@ try {
         else
             throw new Error("Hints is undefined");
         // Создаем текст
-        createText(keyboard.keyboardLanguage, trainer.settings.textSize);
+        createText(keyboard.keyboardLanguage, textSize);
     }
     async function createText(language, textSize) {
         let url; // URL адрес по которому будет направлен запрос 
@@ -128,8 +127,8 @@ try {
         }
     }
     function symbolRequiresPressingTwoKeys(symbol) {
-        const symbolsThatRequire = ["!", "?", ":"]; // Символы требующие нажатия двух клавишь в обоих языках
-        const symbolsThatNotRequire = [" ", ",", ".", "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]; // Символы не требующие нажатия двух клавишь в обоих языках
+        const symbolsThatRequire = ["!", "?", ":"]; // Символы требующие нажатия двух клавиш в обоих языках
+        const symbolsThatNotRequire = [" ", ",", ".", "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]; // Символы не требующие нажатия двух клавиш
         // Если символ в верхнем регистре и не относится к символам не требующим нажатмя двух клавиш
         return symbol === symbol.toUpperCase() && !symbolsThatNotRequire.includes(symbol)
             || symbolsThatRequire.includes(symbol) // Или является специальным символом
@@ -148,8 +147,7 @@ try {
         const currentSymbolElement = document.querySelector(`.${trainer.classes.currentOriginalTextSymbol}`); // Элемент с текущим символом, который необходимо ввести
         if (textArea != null && currentSymbolElement != null) { // Если они существуют
             if (trainer.results.typedSymbols === 0) {
-                trainer.settings.timerObj = startTimer(); // Если напечатан первый символ, то запускаем таймер
-                updateTimer(trainer.settings.timerObj); // И включаем обновление таймера
+                startTimer(); // Если напечатан первый символ, то запускаем таймер
                 trainer.results.typedSymbols++; // Считаем напечатанные символы
             }
             else
@@ -174,7 +172,8 @@ try {
                 }
             }
             else { // Иначе
-                stopTimer(trainer.settings.timerObj); // Останавливаем таймер
+                stopTimer(); // Останавливаем таймер
+                textArea.blur(); // Снимаем фокус с поля ввода текста
                 showStatistics(); // Показываем статистику
             }
         }
@@ -182,81 +181,52 @@ try {
     // Запуск таймера 
     function startTimer() {
         var _a;
-        let timerHTMLElem = document.querySelector(".trainer-timer"); // HTML объект таймера
-        if (timerHTMLElem != null) {
-            (_a = document.querySelector(".info__message .text")) === null || _a === void 0 ? void 0 : _a.classList.add("not-displayed"); // Подсказка о включении таймера при начале печати
-            let timerObj = new Timer(); // Новый объект таймера
-            timerObj.start(); // Запуск таймера
-            return timerObj;
-        }
-        else
-            throw new Error("Timer element is null");
-    }
-    // Ежесекундное обновление таймера в элементе
-    function updateTimer(timerObj) {
-        const timerElem = document.querySelector(".trainer-timer");
-        if (timerElem != null) {
-            setInterval(() => {
-                timerElem.innerHTML = timerObj.getTime();
-            }, 1000);
-        }
-        else
-            throw new Error("Timer element is null");
+        (_a = document.querySelector(".info__message .text")) === null || _a === void 0 ? void 0 : _a.classList.add("not-displayed"); // Подсказка о включении таймера при начале печати
+        trainer.timerObj.start(); // Запуск таймера
     }
     // Остановка таймера
-    function stopTimer(timerObj) {
-        timerObj === null || timerObj === void 0 ? void 0 : timerObj.stop();
+    function stopTimer() {
+        trainer.timerObj.stop();
     }
     function showStatistics() {
-        const timerObj = trainer.settings.timerObj;
-        if (timerObj != undefined) {
-            const language = keyboard.keyboardLanguage; // Считываем конечные данные
-            const textSize = trainer.settings.textSize;
-            const symbolsCount = document.querySelectorAll(`.${trainer.classes.originalTextField}`).length;
-            const erros = trainer.results.errors;
-            const time = document.querySelector(".trainer-timer");
-            const accuracy = 100 - (erros / symbolsCount * 100);
-            const timeInSec = timerObj.getHours() * 3600 + timerObj.getMins() * 60 + timerObj.getSecs();
-            const typeSpeed = symbolsCount / timeInSec * 60;
-            const languageCellTable = document.querySelector(".result-table__language"); // Находим куда будем их вставлять
-            const textSizeCellTable = document.querySelector(".result-table__text-size");
-            const symbolsCountCellTable = document.querySelector(".result-table__symbols-count");
-            const errorsCellTable = document.querySelector(".result-table__errors");
-            const accuracyCellTable = document.querySelector(".result-table__accuracy");
-            const timeCellTable = document.querySelector(".result-table__time");
-            const typeSpeedCellTable = document.querySelector(".result-table__type-speed");
-            if (languageCellTable != null)
-                languageCellTable.textContent = language === "Rus" ? "Русский" : "Английский"; // И вставляем проверяя ячейки на существование
-            else
-                throw new Error("languageCellTable is null");
-            if (textSizeCellTable != null)
-                textSizeCellTable.textContent = textSize + (trainer.settings.textUnitType === "sentence" ? " предл." : "абз.");
-            else
-                throw new Error("textSizeCellTable is null");
-            if (symbolsCountCellTable != null)
-                symbolsCountCellTable.textContent = String(symbolsCount);
-            else
-                throw new Error("symbolsCountCellTable is null");
-            if (errorsCellTable != null)
-                errorsCellTable.textContent = String(erros);
-            else
-                throw new Error("errorsCellTable is null");
-            if (accuracyCellTable != null)
-                accuracyCellTable.textContent = accuracy.toFixed(2) + " %";
-            else
-                throw new Error("accuracyCellTable is null");
-            if (timeCellTable != null && time != null)
-                timeCellTable.textContent = time.textContent;
-            else
-                throw new Error("timeCellTable or time is null");
-            if (typeSpeedCellTable != null)
-                typeSpeedCellTable.textContent = typeSpeed.toFixed(2) + " зн/мин.";
-            else
-                throw new Error("typeSpeedCellTable is null");
-            showModal(`.${trainer.classes.resultModal}`); // Показываем модалку со статистикой
-        }
+        const language = keyboard.keyboardLanguage; // Считываем конечные данные
+        const symbolsCount = document.querySelectorAll(`.${trainer.classes.originalTextSymbol}`).length;
+        const erros = trainer.results.errors;
+        const accuracy = 100 - (erros / symbolsCount * 100);
+        const timerObj = trainer.timerObj;
+        const timeInSec = timerObj.getHours() * 3600 + timerObj.getMins() * 60 + timerObj.getSecs();
+        const typeSpeed = symbolsCount / timeInSec * 60;
+        const languageCellTable = document.querySelector(".result-table__language"); // Находим куда будем их вставлять
+        const symbolsCountCellTable = document.querySelector(".result-table__symbols-count");
+        const errorsCellTable = document.querySelector(".result-table__errors");
+        const accuracyCellTable = document.querySelector(".result-table__accuracy");
+        const timeCellTable = document.querySelector(".result-table__time");
+        const typeSpeedCellTable = document.querySelector(".result-table__type-speed");
+        if (languageCellTable != null)
+            languageCellTable.textContent = language === "Rus" ? "Русский" : "Английский"; // И вставляем проверяя ячейки на существование
         else
-            throw new Error("timerObj is undefinded");
+            throw new Error("languageCellTable is null");
+        if (symbolsCountCellTable != null)
+            symbolsCountCellTable.textContent = String(symbolsCount);
+        else
+            throw new Error("symbolsCountCellTable is null");
+        if (errorsCellTable != null)
+            errorsCellTable.textContent = String(erros);
+        else
+            throw new Error("errorsCellTable is null");
+        if (accuracyCellTable != null)
+            accuracyCellTable.textContent = accuracy.toFixed(2) + " %";
+        else
+            throw new Error("accuracyCellTable is null");
+        if (timeCellTable != null)
+            timeCellTable.textContent = timerObj.getTime();
+        else
+            throw new Error("timeCellTable or time is null");
+        if (typeSpeedCellTable != null)
+            typeSpeedCellTable.textContent = typeSpeed.toFixed(2) + " зн/мин.";
+        else
+            throw new Error("typeSpeedCellTable is null");
+        showModal(`.${trainer.classes.resultModal}`); // Показываем модалку со статистикой
     }
     function tabs(e) {
         const aimTab = e.target; // Элемент по которому было нажатие

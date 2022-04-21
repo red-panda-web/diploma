@@ -37,11 +37,6 @@
                   <div class="info__message">
                      <div class="text">Отсчет времени начнется при начале печати</div>
                   </div>
-                  <div class="info__timer">
-                     <div class="text">Время: 
-                        <span class="trainer-timer">00:00:00</span>
-                     </div>
-                  </div>
                   <div class="info__language">
                      <div class="text">Язык: <span class="trainer-lng">
                            <img src="img/icons/russia_flag.png" alt="Russian language" class="trainer-lng_rus">
@@ -177,6 +172,10 @@
                         <fieldset class="tabs__form-item">
                            <legend class="tabs__form-legend">Размер текста:</legend>
                            <input type="text" id="text-size" placeholder="Введите количество предложений (не более 10)"> 
+                           <ul class="text-size-error not-displayed">
+                              <li>Количество предложений должно быть больше нуля.</li>
+                              <li>Максимально допустимое количество предложений = 10.</li>
+                           </ul> 
                         </fieldset>
                         <fieldset class="tabs__form-item">
                            <legend class="tabs__form-legend">Подсказки по клавишам:</legend>
@@ -216,10 +215,6 @@
                   <tr>
                      <td>Язык текста:</td>
                      <td class="result-table__language"></td>
-                  </tr>
-                  <tr>
-                     <td>Размер текста:</td>
-                     <td class="result-table__text-size"></td>
                   </tr>
                   <tr>
                      <td>Общее количество символов:</td>

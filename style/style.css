@@ -200,4 +200,14 @@ h3{
   cursor: text;
 }
 
+.text-size-error{
+  margin-top: 10px;
+  padding-left: 20px;
+  color: red;
+}
+
+.text-size-error li{
+  list-style-type: disc;
+}
+
 /* ================================== */
