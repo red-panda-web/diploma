@@ -280,13 +280,85 @@ try {
       }
    }
 
+   function showKeyboard(): void {  // Показ клавиатуры
+      const showKeyboardBtn: HTMLElement | null = document.querySelector("#showKeyboard");
+      const hideKeyboardBtn: HTMLElement | null = document.querySelector("#hideKeyboard");
+      const keyboard: HTMLElement | null = document.querySelector(".keyboard");
+      const textBody: HTMLElement | null = document.querySelector(".trainerText__body");
+
+      if (showKeyboardBtn != null && hideKeyboardBtn != null
+         && keyboard != null && textBody != null) {
+         showKeyboardBtn.classList.add("selected");
+         hideKeyboardBtn.classList.remove("selected");
+         keyboard.classList.remove("hidden");
+         textBody.classList.remove("trainerText__body_big");
+      }
+   }
+
+   function hideKeyboard(): void {   // Скрытие клавиатуры
+      const showKeyboardBtn: HTMLElement | null = document.querySelector("#showKeyboard");
+      const hideKeyboardBtn: HTMLElement | null = document.querySelector("#hideKeyboard");
+      const keyboard: HTMLElement | null = document.querySelector(".keyboard");
+      const textBody: HTMLElement | null = document.querySelector(".trainerText__body");
+
+      if (showKeyboardBtn != null && hideKeyboardBtn != null
+         && keyboard != null && textBody != null) {
+         showKeyboardBtn.classList.remove("selected");
+         hideKeyboardBtn.classList.add("selected");
+         keyboard.classList.add("hidden");
+         textBody.classList.add("trainerText__body_big");
+      }
+   }
+
+   function horizontalTextAlignment() { // Горизонтальное расположение блоков текста
+      const horizontalBtn: HTMLElement | null = document.querySelector("#horizontal");
+      const verticalBtn: HTMLElement | null = document.querySelector("#vertical");
+      const textBody: HTMLElement | null = document.querySelector(".trainerText__body");
+
+      if (horizontalBtn != null && verticalBtn != null && textBody != null) {
+         horizontalBtn.classList.add("selected");
+         verticalBtn.classList.remove("selected");
+         textBody.classList.remove("trainerText__body_vertical");
+         textBody.classList.add("trainerText__body_horizontal");
+      }
+   }
+
+   function verticalTextAlignment() {  // Вертикальное расположение блоков текста
+      const horizontalBtn: HTMLElement | null = document.querySelector("#horizontal");
+      const verticalBtn: HTMLElement | null = document.querySelector("#vertical");
+      const textBody: HTMLElement | null = document.querySelector(".trainerText__body");
+
+      if (horizontalBtn != null && verticalBtn != null && textBody != null) {
+         horizontalBtn.classList.remove("selected");
+         verticalBtn.classList.add("selected");
+         textBody.classList.remove("trainerText__body_horizontal");
+         textBody.classList.add("trainerText__body_vertical");
+      }
+   }
+
    const submitBtn: HTMLElement | null = document.querySelector(".tabs__form-btn"); // Кнопка подтверждения
    if (submitBtn != null) submitBtn.addEventListener("click", getFormData)
    else throw new Error("Submit button is null");
    
    const tabsElement: HTMLElement | null = document.querySelector(".tabs");    // Переключение вкладок
    if (tabsElement != null) tabsElement.addEventListener("click", tabs)
-   else throw new Error("tabsElement is null") 
+   else throw new Error("tabsElement is null");
+
+   const showKeyboardBtn: HTMLElement | null = document.querySelector("#showKeyboard");   // Показ клавиатуры
+   if (showKeyboardBtn != null) showKeyboardBtn.addEventListener("click", showKeyboard)
+   else throw new Error("Show keyboard button is null");
+
+   const hideKeyboardBtn: HTMLElement | null = document.querySelector("#hideKeyboard");   // Скрытие клавиатуры
+   if (hideKeyboardBtn != null) hideKeyboardBtn.addEventListener("click", hideKeyboard)
+   else throw new Error("Hide keyboard button is null");
+
+   const horizontalBtn: HTMLElement | null = document.querySelector("#horizontal");   // Горизонтальное расположение блоков текста
+   if (horizontalBtn != null) horizontalBtn.addEventListener("click", horizontalTextAlignment)
+   else throw new Error("Horizontal button is null");
+
+   const verticalBtn: HTMLElement | null = document.querySelector("#vertical");   // Вертикальное расположение блоков текста
+   if (verticalBtn != null) verticalBtn.addEventListener("click", verticalTextAlignment)
+   else throw new Error("Vertical button is null");
 }
 catch (error: any) {
    alert(error.message);

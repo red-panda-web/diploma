@@ -5,42 +5,92 @@
   --keyboard-item-height: var(--keyboard-item-width);
 }
 
-/* Стили для блока с информацией */
-.info__body {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 7px 0;
-  border: 1px solid gray;
+/* Стили для блока с настройками */
+.settings__body {
+  padding: 0 0 5px 0;
 }
-
-.info__message {
-  flex-basis: 60%;
+ 
+.settings__option{
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.info__timer {
-  flex-basis: 20%;
+.settings__optionsList {
+  display: flex;
+  justify-content: end;
+  column-gap: 20px;
 }
 
-.info__language {
-  flex-basis: 20%;
+.settings__form{
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+
+#themePicker{
+  display: none;
+}
+
+#themePicker + label{
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  height: 20px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#themePicker + label::before{
+  content: "";
+  display: block;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background-color: #000;
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+
+#themePicker:checked + label::before{
+  transform: translateX(28px);
+}
+
+.selected{
+  fill: #008000;
+}
+
+#showKeyboard,
+#hideKeyboard,
+#horizontal,
+#vertical{
+  cursor: pointer;
 }
 
 /* ================================== */
 
 /* Стили для блока с вводимым текстом */
-#trainer-lng {
-  display: inline-block;
-}
-
 .trainerText__body {
   display: flex;
   max-height: 350px;
   padding: 20px 0;
   border: 1px solid gray;
   overflow-x: hidden;
+}
+
+.trainerText__body_big{
+  max-height: 650px;
+}
+
+.trainerText__body_horizontal{
+  flex-direction: row;
+}
+
+.trainerText__body_vertical {
+  flex-direction: column;
 }
 
 .trainerText__entered,
@@ -198,3 +248,5 @@
 .result-table tr{
   border-bottom: 1px solid gray;
 }
+
+/* ================================== */

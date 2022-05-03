@@ -246,6 +246,54 @@ try {
             }
         }
     }
+    function showKeyboard() {
+        const showKeyboardBtn = document.querySelector("#showKeyboard");
+        const hideKeyboardBtn = document.querySelector("#hideKeyboard");
+        const keyboard = document.querySelector(".keyboard");
+        const textBody = document.querySelector(".trainerText__body");
+        if (showKeyboardBtn != null && hideKeyboardBtn != null
+            && keyboard != null && textBody != null) {
+            showKeyboardBtn.classList.add("selected");
+            hideKeyboardBtn.classList.remove("selected");
+            keyboard.classList.remove("hidden");
+            textBody.classList.remove("trainerText__body_big");
+        }
+    }
+    function hideKeyboard() {
+        const showKeyboardBtn = document.querySelector("#showKeyboard");
+        const hideKeyboardBtn = document.querySelector("#hideKeyboard");
+        const keyboard = document.querySelector(".keyboard");
+        const textBody = document.querySelector(".trainerText__body");
+        if (showKeyboardBtn != null && hideKeyboardBtn != null
+            && keyboard != null && textBody != null) {
+            showKeyboardBtn.classList.remove("selected");
+            hideKeyboardBtn.classList.add("selected");
+            keyboard.classList.add("hidden");
+            textBody.classList.add("trainerText__body_big");
+        }
+    }
+    function horizontalTextAlignment() {
+        const horizontalBtn = document.querySelector("#horizontal");
+        const verticalBtn = document.querySelector("#vertical");
+        const textBody = document.querySelector(".trainerText__body");
+        if (horizontalBtn != null && verticalBtn != null && textBody != null) {
+            horizontalBtn.classList.add("selected");
+            verticalBtn.classList.remove("selected");
+            textBody.classList.remove("trainerText__body_vertical");
+            textBody.classList.add("trainerText__body_horizontal");
+        }
+    }
+    function verticalTextAlignment() {
+        const horizontalBtn = document.querySelector("#horizontal");
+        const verticalBtn = document.querySelector("#vertical");
+        const textBody = document.querySelector(".trainerText__body");
+        if (horizontalBtn != null && verticalBtn != null && textBody != null) {
+            horizontalBtn.classList.remove("selected");
+            verticalBtn.classList.add("selected");
+            textBody.classList.remove("trainerText__body_horizontal");
+            textBody.classList.add("trainerText__body_vertical");
+        }
+    }
     const submitBtn = document.querySelector(".tabs__form-btn"); // Кнопка подтверждения
     if (submitBtn != null)
         submitBtn.addEventListener("click", getFormData);
@@ -256,6 +304,26 @@ try {
         tabsElement.addEventListener("click", tabs);
     else
         throw new Error("tabsElement is null");
+    const showKeyboardBtn = document.querySelector("#showKeyboard"); // Показ клавиатуры
+    if (showKeyboardBtn != null)
+        showKeyboardBtn.addEventListener("click", showKeyboard);
+    else
+        throw new Error("Show keyboard button is null");
+    const hideKeyboardBtn = document.querySelector("#hideKeyboard"); // Скрытие клавиатуры
+    if (hideKeyboardBtn != null)
+        hideKeyboardBtn.addEventListener("click", hideKeyboard);
+    else
+        throw new Error("Hide keyboard button is null");
+    const horizontalBtn = document.querySelector("#horizontal"); // Горизонтальное расположение блоков текста
+    if (horizontalBtn != null)
+        horizontalBtn.addEventListener("click", horizontalTextAlignment);
+    else
+        throw new Error("Horizontal button is null");
+    const verticalBtn = document.querySelector("#vertical"); // Вертикальное расположение блоков текста
+    if (verticalBtn != null)
+        verticalBtn.addEventListener("click", verticalTextAlignment);
+    else
+        throw new Error("Vertical button is null");
 }
 catch (error) {
     alert(error.message);

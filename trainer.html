@@ -31,25 +31,54 @@
       </header>
 
       <main>
-         <section class="info">
+         <section class="settings">
             <div class="container">
-               <div class="info__body">
-                  <div class="info__message">
-                     <div class="text">Отсчет времени начнется при начале печати</div>
+               <div class="settings__body">
+                  <div class="settings__optionsList">
+                     <div class="settings__option">
+                        <form action="" class="settings__form">
+                           <i class="fa-solid fa-sun fa-2x"></i>
+                           <input type="checkbox" name="themePicker" id="themePicker">
+                           <label for="themePicker"></label>
+                           <i class="fa-solid fa-moon fa-2x"></i>
+                        </form>
+                     </div>
+                     <div class="settings__option">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 576 512" id="showKeyboard" fill="#808080" class="selected">
+                           <path
+                              d="M512 448H64c-35.35 0-64-28.65-64-64V128c0-35.35 28.65-64 64-64h448c35.35 0 64 28.65 64 64v256C576 419.3 547.3 448 512 448zM128 180v-40C128 133.4 122.6 128 116 128h-40C69.38 128 64 133.4 64 140v40C64 186.6 69.38 192 76 192h40C122.6 192 128 186.6 128 180zM224 180v-40C224 133.4 218.6 128 212 128h-40C165.4 128 160 133.4 160 140v40C160 186.6 165.4 192 172 192h40C218.6 192 224 186.6 224 180zM320 180v-40C320 133.4 314.6 128 308 128h-40C261.4 128 256 133.4 256 140v40C256 186.6 261.4 192 268 192h40C314.6 192 320 186.6 320 180zM416 180v-40C416 133.4 410.6 128 404 128h-40C357.4 128 352 133.4 352 140v40C352 186.6 357.4 192 364 192h40C410.6 192 416 186.6 416 180zM512 180v-40C512 133.4 506.6 128 500 128h-40C453.4 128 448 133.4 448 140v40C448 186.6 453.4 192 460 192h40C506.6 192 512 186.6 512 180zM128 276v-40C128 229.4 122.6 224 116 224h-40C69.38 224 64 229.4 64 236v40C64 282.6 69.38 288 76 288h40C122.6 288 128 282.6 128 276zM224 276v-40C224 229.4 218.6 224 212 224h-40C165.4 224 160 229.4 160 236v40C160 282.6 165.4 288 172 288h40C218.6 288 224 282.6 224 276zM320 276v-40C320 229.4 314.6 224 308 224h-40C261.4 224 256 229.4 256 236v40C256 282.6 261.4 288 268 288h40C314.6 288 320 282.6 320 276zM416 276v-40C416 229.4 410.6 224 404 224h-40C357.4 224 352 229.4 352 236v40C352 282.6 357.4 288 364 288h40C410.6 288 416 282.6 416 276zM512 276v-40C512 229.4 506.6 224 500 224h-40C453.4 224 448 229.4 448 236v40C448 282.6 453.4 288 460 288h40C506.6 288 512 282.6 512 276zM128 372v-40C128 325.4 122.6 320 116 320h-40C69.38 320 64 325.4 64 332v40C64 378.6 69.38 384 76 384h40C122.6 384 128 378.6 128 372zM416 372v-40C416 325.4 410.6 320 404 320h-232C165.4 320 160 325.4 160 332v40C160 378.6 165.4 384 172 384h232C410.6 384 416 378.6 416 372zM512 372v-40C512 325.4 506.6 320 500 320h-40C453.4 320 448 325.4 448 332v40C448 378.6 453.4 384 460 384h40C506.6 384 512 378.6 512 372z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" id="hideKeyboard" fill="#808080">
+                           <path
+                              d="M1,4.27L2.28,3L20,20.72L18.73,22L15.73,19H4C2.89,19 2,18.1 2,17V7C2,6.5 2.18,6.07 2.46,5.73L1,4.27M19,10V8H17V10H19M19,13V11H17V13H19M16,10V8H14V10H16M16,13V11H14V12.18L11.82,10H13V8H11V9.18L9.82,8L6.82,5H20A2,2 0 0,1 22,7V17C22,17.86 21.46,18.59 20.7,18.87L14.82,13H16M8,15V17H13.73L11.73,15H8M5,10H6.73L5,8.27V10M7,13V11H5V13H7M8,13H9.73L8,11.27V13Z" />
+                        </svg>
+                     </div>
+                     <div class="settings__option">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="32" height="32" viewBox="0 0 32 32" id="horizontal" fill="#808080" class="selected">
+                           <g transform="translate(0.000000,32.000000) scale(0.100000,-0.100000)">
+                              <path
+                                 d="M35 277 c-3 -7 -4 -65 -3 -128 l3 -114 50 0 50 0 0 125 0 125 -48 3 c-33 2 -49 -1 -52 -11z m85 -117 l0 -110 -35 0 -35 0 0 110 0 110 35 0 35 0 0 -110z" />
+                              <path
+                                 d="M185 277 c-3 -7 -4 -65 -3 -128 l3 -114 50 0 50 0 0 125 0 125 -48 3 c-33 2 -49 -1 -52 -11z m85 -117 l0 -110 -35 0 -35 0 0 110 0 110 35 0 35 0 0 -110z" />
+                           </g>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" id="vertical" fill="#808080">
+                           <g transform="translate(0.000000,32.000000) scale(0.100000,-0.100000)">
+                              <path
+                                 d="M34 276 c-3 -7 -4 -31 -2 -52 l3 -39 125 0 125 0 0 50 0 50 -123 3 c-99 2 -123 0 -128 -12z m236 -41 l0 -35 -110 0 -110 0 0 35 0 35 110 0 110 0 0 -35z" />
+                              <path
+                                 d="M34 126 c-3 -7 -4 -31 -2 -52 l3 -39 125 0 125 0 0 50 0 50 -123 3 c-99 2 -123 0 -128 -12z m236 -41 l0 -35 -110 0 -110 0 0 35 0 35 110 0 110 0 0 -35z" />
+                           </g>
+                        </svg>
+                     </div>
                   </div>
-                  <div class="info__language">
-                     <div class="text">Язык: <span class="trainer-lng">
-                           <img src="img/icons/russia_flag.png" alt="Russian language" class="trainer-lng_rus">
-                           <img src="img/icons/usa_flag.png" alt="English language" class="trainer-lng_eng not-displayed">
-                        </span></div>
-                  </div>
-               </div>
+               </div>  
             </div>
          </section>
 
          <section class="trainerText">
             <div class="container">
-               <div class="trainerText__body">
+               <div class="trainerText__body trainerText__body_horizontal">
                   <form class="trainerText__entered">
                      <textarea class="trainerText__entered-area"></textarea>
                   </form>

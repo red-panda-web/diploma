@@ -51,7 +51,10 @@ h3{
 }
 
 .hidden {
+  opacity: 0;
   visibility: hidden;
+  width: 0;
+  height: 0;
 }
 
 .not-displayed {
@@ -168,10 +171,7 @@ h3{
 }
 
 .tabs__form-item input[type='radio']{
-  width: 0;
-  height: 0;
-  visibility: hidden;
-  opacity: 0;
+  display: none;
 }
 
 .tabs__form-item label{
